@@ -15,6 +15,8 @@ import './Component/Assets/css/font-awesome-all.min.css'
 import './Component/Assets/css/reset.css'
 import './Component/Assets/css/style.css'
 
+
+
 // import bootstrapSelectMin from './Component/Assets/js/bootstrap-select.min';
 // import bootstrapMin from './Component/Assets/js/bootstrap.min'
 // import jqueryMigrate from './Component/Assets/js/jquery-migrate';
@@ -35,7 +37,8 @@ function App() {
 
             
             {/* <script type="text/javascript" src={bootstrapSelectMin}></script>
-            <script type="text/javascript" src={bootstrapMin}></script>
+            <script type="text/javascript" src={bootstrapMin}></script> 
+
             <script type="text/javascript" src={jqueryMigrate}></script>
             <script type="text/javascript" src={jquaryMin}></script>
             <script type="text/javascript" src={main}></script>
