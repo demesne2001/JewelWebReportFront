@@ -89,12 +89,12 @@ export default function Header() {
 			</div>
 		</header>
 
-		<Modal show={filterFlag}  onHide={handleOnClose}  backdrop="static"  keyboard={false} >
+		<Modal show={filterFlag}  onHide={handleOnClose}  backdrop="static"  keyboard={false}  size='xl'>
 
 		{/* <div tabindex="-1" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-		aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl modal-filter"> */}
-			{/* <div class="modal-content"> */}
+		aria-labelledby="staticBackdropLabel" aria-hidden="true"> */}
+		<div class="modal-dialog modal-dialog-c`entered modal-dialog-scrollable modal-xl modal-filter">`
+			<div class="modal-content">
 				
 
                 <Modal.Header closeButton>
@@ -468,9 +468,9 @@ export default function Header() {
 
                 </Modal.Footer>
 
-				{/* </div> */}
-			{/* </div>
-			</div> */}
+				</div>
+			 </div>
+			{/* </div> */}
 			</Modal>
 	
         </> 

@@ -35,7 +35,31 @@
     bottom: -16px;
     background-color: #006666;
     animation: animate 1.2s cubic-bezier(1,0,0.4,1) forwards;
+    
 }
+
+.hide{
+    display: none;
+}
+
+.bar_container .bar:hover + .hide{
+    background-color: rgb(154, 223, 250);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    border-radius: 5px;
+    display: block;
+    position: absolute;
+    overflow: hidden;
+    z-index: 2400;
+    opacity: 1;
+    right: 30px;
+    top: 0px !important;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
 @keyframes animate {
     100%{
         height: 100%;

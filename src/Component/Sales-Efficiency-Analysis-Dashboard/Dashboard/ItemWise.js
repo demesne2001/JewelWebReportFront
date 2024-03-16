@@ -3,8 +3,10 @@ import './ItemWise.css'
 
 export default function ItemWise() {
 
-	const label = ["y1","y2","y3","y4","y5","y6"]
-	const data = ["95","83","80","93","65","78"]	
+	const lineDiffrence = ["100%","80%","60%","40%","20%","0%"]  
+
+	const label = ["x1","x2","x3","x4","x5","x6"]
+	const data = ["95%","83%","80%","93%","65%","78%"]	
 	
 	return (
 
@@ -21,12 +23,12 @@ export default function ItemWise() {
 
 						<div className="background_grid">
 
-							<span className='line' value="100%" ></span>
-							<span className='line' value="80%"></span>
-							<span className='line' value="60%" ></span>
-							<span className='line' value="40%"></span>
-							<span className='line' value="20%"></span>
-							<span className='line' value="0%"></span>
+
+							{lineDiffrence.map((yaxis)=>{
+								
+							  return <span className='line' value={yaxis}></span>
+							})}
+
 
 						</div>
 
@@ -34,22 +36,19 @@ export default function ItemWise() {
 
 						<div className="bar_container">
 
-							<div className='bar' style={{ maxHeight: "95%" }} ></div>
-							<div className='bar' style={{ maxHeight: "83%" }} ></div>
-							<div className='bar' style={{ maxHeight: "80%" }} ></div>
-							<div className='bar' style={{ maxHeight: "93%" }} ></div>
-							<div className='bar' style={{ maxHeight: "65%" }} ></div>
-							<div className='bar' style={{ maxHeight: "78%" }} ></div>
+							{data.map((height)=>{
+
+								return <> <div className='bar' style={{maxHeight:height}}/> <div class="hide">{height}</div> </>
+							})}
 
 						</div>
 
 						<div className='titles'>
-							<span>Item 1</span>
-							<span>Item 2</span>
-							<span>Item 3</span>
-							<span>Item 4</span>
-							<span>Item 5</span>
-							<span>Item 6</span>
+
+							{label.map((label)=>{
+
+								return <span>{label}</span>
+							})}
 						</div>
 
 					</div>
