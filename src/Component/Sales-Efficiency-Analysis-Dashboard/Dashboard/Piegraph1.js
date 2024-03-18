@@ -28,15 +28,7 @@ export default function Piegraph1() {
                 }
               },
               responsive: [{
-                breakpoint: 480,
-                options: {
-                  chart: {
-                    width: 200
-                  },
-                  legend: {
-                    position: 'bottom'
-                  }
-                }
+                breakpoint: 2000,
               }]
             }
     return (
@@ -47,7 +39,7 @@ export default function Piegraph1() {
                 <div className="crancy-progress-card top-graph-card">
                     {/* <div className="text-center"> */}
                         
-                    <ReactApexChart options={options} series={series} type="donut" height={210}  />
+                    <ReactApexChart options={options} series={series} type="donut" />
                     
                     {/* </div> */}
                 </div>

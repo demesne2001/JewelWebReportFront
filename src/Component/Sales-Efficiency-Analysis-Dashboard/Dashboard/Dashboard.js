@@ -24,7 +24,6 @@ import SalesAgingWise from './SalesAgingWise'
 import ModeofSalesWise from './ModeofSalesWise'
 import TeamModeofSalesWise from './TeamModeofSalesWise'
 
-
 // import bootstrapSelectMin from '../../Assets/js/bootstrap-select.min';
 // import bootstrapMin from '../../Assets/js/bootstrap.min'
 // import jqueryMigrate from '../../Assets/js/jquery-migrate';
@@ -52,7 +51,7 @@ export default function Dashboard() {
 
                             </div>
 
-                            <div className="row crancy-gap-30">
+                            {/* <div className="row crancy-gap-30">
                                 <BranchWise/>
                                 <StateWise/>
                                 <CityWise/>
@@ -71,7 +70,7 @@ export default function Dashboard() {
                                 <SalesAgingWise/>
                                 <ModeofSalesWise/>
                                 <TeamModeofSalesWise/>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

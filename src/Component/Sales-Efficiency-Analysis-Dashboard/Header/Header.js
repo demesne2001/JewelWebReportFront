@@ -8,7 +8,6 @@ export default function Header() {
 
 	const [fullScreenFlag,setFullscreenFlag] = useState(false)
 
-
 	function handlerOnOpen(){
 		setFIlterFlag(true)
 	}
@@ -106,13 +105,15 @@ export default function Header() {
 
 		<Modal show={filterFlag}  onHide={handleOnClose}  backdrop="static"  keyboard={false}  size='xl'>
 
-		{/* <div tabindex="-1" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+		{/* <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
 		aria-labelledby="staticBackdropLabel" aria-hidden="true"> */}
-		<div class="modal-dialog modal-dialog-c`entered modal-dialog-scrollable modal-xl modal-filter">`
+
+		<div class="modal-dialog modal-dialog-c`entered modal-dialog-scrollable modal-xl modal-filter" id="staticBackdrop" data-bs-backdrop="static">`
 			<div class="modal-content">
 				
 
                 <Modal.Header closeButton>
+
 					<div class="modal-body-header">
 						<div class="container">
 							<div class="card-graph-detail">
