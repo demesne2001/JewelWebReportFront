@@ -60,8 +60,7 @@ export default function TeamModeofSalesWise() {
 		  ],
 		},
 		legend: {
-		  position: 'right',
-		  offsetY: 40
+		  position: 'bottom',
 		},
 		fill: {
 		  opacity: 1

@@ -45,10 +45,11 @@ export default function Piegraph1() {
         <div className="col-xl-2 col-lg-4 col-md-4 col-12">
             <div className="graph-card">
                 <div className="crancy-progress-card top-graph-card">
-                    <div className="text-center">
+                    {/* <div className="text-center"> */}
                         
-                    <ReactApexChart options={options} series={series} type="donut"  />
-                    </div>
+                    <ReactApexChart options={options} series={series} type="donut" height={210}  />
+                    
+                    {/* </div> */}
                 </div>
 
             </div>

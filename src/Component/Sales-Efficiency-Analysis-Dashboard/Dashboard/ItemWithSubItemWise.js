@@ -6,7 +6,7 @@ import ReactApexChart from 'react-apexcharts';
 export default function ItemWithSubItemWise() {
 
 	const series = [{
-		data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+		data: [400, 430, 448, 470,1100]
 	  }]
 	const options = {
 		chart: {
@@ -48,23 +48,13 @@ export default function ItemWithSubItemWise() {
 		  colors: ['#fff']
 		},
 		xaxis: {
-		  categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan',
-			'United States', 'China', 'India'
+		  categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands','United States', 
 		  ],
 		},
 		yaxis: {
 		  labels: {
 			show: false
 		  }
-		},
-		title: {
-			text: 'Custom DataLabels',
-			align: 'center',
-			floating: true
-		},
-		subtitle: {
-			text: 'Category Names as DataLabels inside bars',
-			align: 'center',
 		},
 		tooltip: {
 		  theme: 'dark',

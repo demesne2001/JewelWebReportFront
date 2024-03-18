@@ -6,6 +6,11 @@ import ReactApexChart from 'react-apexcharts';
 export default function SubItemWise() {
 	const series = [14, 23, 21, 17, 15, 10, 12, 17, 21]
     const options = {
+      dataLabels: {enabled: true,
+      //   formatter: function (val, opts) {
+      //     return val
+      // },
+    },
 			  colors:['#0f4d45','#00897b','#44b8af','#a5ce9f','#e6eabf','#fffae4'],
               chart: {
                 type: 'polarArea',

@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import Modal from 'react-bootstrap/Modal';
 
 export default function Header() {
 
 	const [filterFlag,setFIlterFlag] = useState(false)
+
+	const [fullScreenFlag,setFullscreenFlag] = useState(false)
+
 
 	function handlerOnOpen(){
 		setFIlterFlag(true)
@@ -13,6 +16,18 @@ export default function Header() {
 	function handleOnClose(){
 		setFIlterFlag(false)
 	}
+
+	function fullscreen(){
+		setFullscreenFlag(true)
+		let elem = document.documentElement;
+		if(fullScreenFlag){
+			elem.requestFullscreen();
+		}
+	}
+
+	useEffect(()=>{
+
+	},[fullScreenFlag])
 
   return (
   <>
@@ -64,7 +79,7 @@ export default function Header() {
 												<li className="geex-content__header__quickaction__item">
 													<div className="geex-content__header__quickaction__link crancy-header__alarm top-header-icon"
 														id="crancy-header__full">
-														<i className="fas fa-expand-alt"></i>
+														<i className="fas fa-expand-alt" onClick={fullscreen}></i>
 													</div>
 												</li>
 												<li className="geex-content__header__quickaction__item">

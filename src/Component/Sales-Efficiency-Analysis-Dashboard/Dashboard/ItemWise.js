@@ -17,6 +17,7 @@ export default function ItemWise() {
 						Item Wise</p>
 					<i className="fas fa-external-link-alt"></i>
 				</a>
+
 				<div className="crancy-progress-card card-contain-graph">
 
 					<div className='container itemwise'>

@@ -77,20 +77,20 @@ export default function BranchWise() {
 					<i className="fas fa-external-link-alt"></i>
 				</a>
 				<div className="crancy-progress-card card-contain-graph">
-					<div className="small-images">
+					{/* <div className="small-images">
 						<a href="#" className="active">Option 1</a>
 						<a href="#">Option 2</a>
 						<a href="#">Option 3</a>
-					</div>
-					<div id="big-image">
-						<div id="chart">
+					</div> */}
+					{/* <div id="big-image"> */}
+						{/* <div id="chart"> */}
 							<ReactApexChart options={options} series={series} type="radialBar" height={390} />
-						</div>
-						<div id="html-dist"></div>
+						{/* </div> */}
+						{/* <div id="html-dist"></div> */}
 						{/* <img src={item} alt=""/>
 											<img src={salesaginwise} alt=""/> */}
 
-					</div>
+					{/* </div> */}
 				</div>
 			</div>
 		</div>

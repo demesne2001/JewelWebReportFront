@@ -1,68 +1,77 @@
-import React from 'react'
-
+import React, { useEffect, useState } from 'react'
+import Gradient from "javascript-color-gradient";
 import ReactApexChart from 'react-apexcharts';
 
 export default function SalesPartyWise() {
-	const series = [{
-		name: 'Marine Sprite',
-		data: [44, 55, 41, 37, 22, 43, 21]
-	  }]
 
-	const options = {
-		chart: {
-		  type: 'bar',
-		  height: 350,
-		  stacked: true,
-		  stackType: '100%'
-		},
-		plotOptions: {
-		  bar: {
-			horizontal: true,
-			 dataLabels: {
-			 enabled: true,
-			 position: 'top'
-				}
-		  },
-		},
-		stroke: {
-		  width: 1,
-		  colors: ['#fff']
-		},
-		title: {
-		  text: ''
-		},
-		xaxis: {
-		  categories: [2008, 2009, 2010, 2011, 2012, 2013, 2014],
-		},
-		tooltip: {
-		  y: {
-			formatter: function (val) {
-			  return val + "K"
-			}
-		  }
-		},
-		fill: {
-		  opacity: 1
-		
-		},
-		legend: {
-		  position: 'top',
-		  horizontalAlign: 'left',
-		  offsetX: 40
+	const [sales, setSales] = useState([
+		{ product: 'Black Watch', thisYearProfit: 312122, color: "" },
+		{ product: 'Gaming Set', thisYearProfit: 296232, color: "" },
+		{ product: 'Brown Purse', thisYearProfit: 500332, color: "" },
+		{ product: 'Bamboo Watch', thisYearProfit: 43342, color: "" },
+		{ product: 'Blue Band', thisYearProfit: 8500, color: "" },
+		{ product: 'Blue T-Shirt', thisYearProfit: 65323, color: "" },
+		{ product: 'Chakra Bracelet', thisYearProfit: 150005, color: "" },
+		{ product: 'Galaxy Earrings', thisYearProfit: 100214, color: "" },
+		{ product: 'Game Controller', thisYearProfit: 53322, color: "" },
+		{ product: 'Gold Phone Case', thisYearProfit: 12533, color: "" }
+	]);
+
+	const gradientArray = new Gradient()
+		.setColorGradient("#01555b", "#98c8cb")
+		.getColors()
+
+
+	useEffect(() => {
+		gradientdata()
+	},[])
+
+
+	function gradientdata() {
+		var j =[]
+		for (let index = 0; index < sales.length; index++) {
+
+			j.push({...sales[index],['color']:gradientArray[index]})
+
+		 
+			
 		}
-	  }
-  return (
-    <div className="col-lg-4 col-md-6 col-12">
-								<div className="graph-card">
-									<a href="#" target="_self" className="card-title-graph">
-										<p><i className="fas fa-handshake"></i>
-											Sales Party Wise</p>
-										<i className="fas fa-external-link-alt"></i>
-									</a>
-									<div className="crancy-progress-card card-contain-graph">
-									<ReactApexChart options={options} series={series} type="bar" height={350}/>
-									</div>
-								</div>
-							</div>
-  )
+		setSales(j)
+	}
+
+
+	return (
+
+		<div className="col-lg-4 col-md-6 col-12">
+			<div className="graph-card">
+				<a href="#" target="_self" className="card-title-graph">
+					<p><i className="fas fa-handshake"></i>
+						Sales Party Wise</p>
+					<i className="fas fa-external-link-alt"></i>
+				</a>
+				<div className="crancy-progress-card card-contain-graph">
+					{/* <ReactApexChart options={options} series={series} type="bar" height={350}/> */}
+					<table align='center'>
+						<tr>
+							<th> Product</th>
+							<th> Profit</th>
+						</tr>
+
+
+						{sales.map((data) => {
+							console.log(data);
+							return (
+								<tr >
+									<td>{data.product} </td>
+									<td style={{ backgroundColor: data.color, width: 250 ,  borderColor: 'cadetblue',borderStyle: 'double', borderWidth: '1'}}>{data.thisYearProfit} </td>
+
+								</tr>
+							)
+						})}
+
+					</table>
+				</div>
+			</div>
+		</div>
+	)
 }
