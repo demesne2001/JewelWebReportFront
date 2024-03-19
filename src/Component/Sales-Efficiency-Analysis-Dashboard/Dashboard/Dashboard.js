@@ -23,6 +23,7 @@ import YearWise from './YearWise'
 import SalesAgingWise from './SalesAgingWise'
 import ModeofSalesWise from './ModeofSalesWise'
 import TeamModeofSalesWise from './TeamModeofSalesWise'
+import Pie1 from '../../Chartjs/Pie1'
 
 // import bootstrapSelectMin from '../../Assets/js/bootstrap-select.min';
 // import bootstrapMin from '../../Assets/js/bootstrap.min'
@@ -43,7 +44,9 @@ export default function Dashboard() {
                         <div className="crancy-dsinner">
 
                             <div className="row">
+
                                 <Piegraph1 />
+                                {/* <Pie1/> */}
                                 <SalesEfficiency />
                                 <ReturnTrend/>
                                 <Collection/>
@@ -51,7 +54,7 @@ export default function Dashboard() {
 
                             </div>
 
-                            {/* <div className="row crancy-gap-30">
+                            <div className="row crancy-gap-30">
                                 <BranchWise/>
                                 <StateWise/>
                                 <CityWise/>
@@ -63,14 +66,14 @@ export default function Dashboard() {
                                 <PurchasePartyWise/>
                                 <SalesPartyWise/>
                                 <SalesManWise/>
-                                <ProductWise/>
+                                <ProductWise/> 
                                 <DesignCatalogueWise/>
                                 <MonthWise/>
                                 <YearWise/>
                                 <SalesAgingWise/>
                                 <ModeofSalesWise/>
                                 <TeamModeofSalesWise/>
-                            </div> */}
+                            </div>
                         </div>
                     </div>
                 </div>

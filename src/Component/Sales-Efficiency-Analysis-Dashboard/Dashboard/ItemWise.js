@@ -1,5 +1,8 @@
 import React from 'react'
-import './ItemWise.css'
+
+import HbarFilled from '../../CustomCharts/HbarFilled'
+import Cylinder from '../../CustomCharts/Cylinder3d.js/Cylinder'
+import CylinderFilled from '../../CustomCharts/CylinderFilled/CylinderFilled'
 
 export default function ItemWise() {
 
@@ -20,7 +23,12 @@ export default function ItemWise() {
 
 				<div className="crancy-progress-card card-contain-graph">
 
-					<div className='container itemwise'>
+				<div className='container itemwise'>
+
+						{/* <Cylinder/> */}
+						{/* <CylinderFilled/> */}
+
+						{/* <HbarFilled/> */}
 
 						<div className="background_grid">
 
@@ -39,7 +47,7 @@ export default function ItemWise() {
 
 							{data.map((height)=>{
 
-								return <> <div className='bar' style={{maxHeight:height}}/> <div class="hide">{height}</div> </>
+								return <> <div className='shell'><div className='bar' style={{maxHeight:height}}/> <div class="hide">{height}</div></div></>
 							})}
 
 						</div>

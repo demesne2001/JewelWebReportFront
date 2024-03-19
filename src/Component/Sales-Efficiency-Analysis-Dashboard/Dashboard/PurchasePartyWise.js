@@ -125,6 +125,11 @@ export default function PurchasePartyWise() {
         //           }
         //     }]
         //   }
+		// annotations: {
+		// 	yaxis: [
+		// 	  {
+		// 		y: 8800,
+		// 	  }
 		annotations: {
             points:[
 				{
@@ -200,7 +205,7 @@ export default function PurchasePartyWise() {
 				  image: { path: img }
 				}
 			  ]
-          }
+		}
       }
   return (
     

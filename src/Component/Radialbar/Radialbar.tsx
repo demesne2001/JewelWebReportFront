@@ -28,7 +28,7 @@ export type RadialBarsProps = {
   showControls?: boolean;
 };
 
-export default function Radialbar({ width, height, showControls = true }: RadialBarsProps) {
+export default function Radialbar({ width, height, showControls = false }: RadialBarsProps) {
   
   const [rotation, setRotation] = useState(0);
   const [sortAlphabetically, setSortAlphabetically] = useState(true);
@@ -73,8 +73,8 @@ export default function Radialbar({ width, height, showControls = true }: Radial
           {data.map((d) => {
             
             const letter = getLetter(d);
-            const startAngle = xScale(letter);
-            // const startAngle = getLetter(d)
+            const startAngle = 0
+            // const startAngle = xScale(letter);
             const midAngle = startAngle + xScale.bandwidth() / 2;
             const endAngle = startAngle + xScale.bandwidth();
 
