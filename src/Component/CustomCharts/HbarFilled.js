@@ -1,11 +1,40 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import ReactApexChart from 'react-apexcharts';
+import img from '../Assets/img/svg/whiteCircle.svg'
 
 export default function HbarFilled() {
 
+    const seriesdata = [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+    const labels = ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan',
+    'United States', 'China', 'Germany'
+  ]
+  
+    const [imageArr,setImageArr] = useState([])
+
+    function makeImageArr(){
+      let temp = []
+
+      for (let index = 0; index < seriesdata.length; index++) {
+        
+        let calcX = seriesdata[index] - (seriesdata[index]/6)
+
+        temp.push({
+          x: calcX,
+          y: labels[index],
+          marker: { size: 8 },
+          image: { path: img },
+        })
+      }
+      setImageArr(temp)
+    }
+
+    useEffect(()=>{
+        makeImageArr()
+    },[])
+    
     const series = [{
-        data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+        data: seriesdata
       }]
 
     const options = {
@@ -16,10 +45,10 @@ export default function HbarFilled() {
         },
         plotOptions: {
           bar: {
-            borderRadius: 4,
             horizontal: true,
-            columnWidth: '5%',
-            nodeWidth: 20
+            borderRadius:'12',
+            borderRadiusApplication: 'end',
+            columnWidth: '50%',
             
           }
         },
@@ -27,16 +56,27 @@ export default function HbarFilled() {
           enabled: false
         },
         xaxis: {
-          categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan',
-            'United States', 'China', 'Germany'
-          ],
+          categories: labels,
         },
         grid: {
             position: 'back',
             column: {
               colors: ['#f2f2f2'],
           }
-        }
+        },
+      //   annotations: {
+      //     points:[
+      // {
+      //   x: 1116,
+      //   y: 'China',
+      //   marker: { size: 8 },
+      //   image: { path: img },
+
+      // },
+      // ]
+      annotations: {
+        points:imageArr
+  }
       }
       
   return (

@@ -18,23 +18,26 @@ export default function SalesPartyWise() {
 	]);
 
 	const gradientArray = new Gradient()
+
+	// .setColorGradient("#00897b", "#cdffed")
+	// .getColors()
+	
+
 		.setColorGradient("#01555b", "#98c8cb")
 		.getColors()
 
 
 	useEffect(() => {
 		gradientdata()
-	},[])
+	}, [])
 
 
 	function gradientdata() {
-		var j =[]
+		var j = []
 		for (let index = 0; index < sales.length; index++) {
 
-			j.push({...sales[index],['color']:gradientArray[index]})
+			j.push({ ...sales[index], ['color']: gradientArray[index] })
 
-		 
-			
 		}
 		setSales(j)
 	}
@@ -51,7 +54,7 @@ export default function SalesPartyWise() {
 				</a>
 				<div className="crancy-progress-card card-contain-graph">
 					{/* <ReactApexChart options={options} series={series} type="bar" height={350}/> */}
-					<table align='center'>
+					<table align='center' rules='rows' border='white' style={{border:'white'}}>
 						<tr>
 							<th> Product</th>
 							<th> Profit</th>
@@ -59,11 +62,11 @@ export default function SalesPartyWise() {
 
 
 						{sales.map((data) => {
-							console.log(data);
 							return (
 								<tr >
-									<td>{data.product} </td>
-									<td style={{ backgroundColor: data.color, width: 250 ,  borderColor: 'cadetblue',borderStyle: 'double', borderWidth: '1'}}>{data.thisYearProfit} </td>
+									<td style={{ backgroundColor: data.color, width: 250, color:'white'}}>{data.product} </td>
+									<td style={{ backgroundColor: data.color, width: 250, color:'white' }}>{data.thisYearProfit} ₹</td>
+
 
 								</tr>
 							)

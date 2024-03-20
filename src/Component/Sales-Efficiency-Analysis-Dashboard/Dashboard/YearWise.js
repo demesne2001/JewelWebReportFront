@@ -1,6 +1,7 @@
 import React from 'react'
 
 import ReactApexChart from 'react-apexcharts';
+import { barMarkerOptions } from '../../ChartOptions/BarMarker';
 
 export default function YearWise() {
 	
@@ -111,29 +112,7 @@ export default function YearWise() {
 		  ]
 		}
 	  ]
-	  const options = {
-		chart: {
-		  height: 350,
-		  type: 'bar'
-		},
-		plotOptions: {
-		  bar: {
-			columnWidth: '60%'
-		  }
-		},
-		colors: ['#00E396'],
-		dataLabels: {
-		  enabled: false
-		},
-		legend: {
-		  show: true,
-		  showForSingleSeries: true,
-		  customLegendItems: ['Actual', 'Expected'],
-		  markers: {
-			fillColors: ['#00E396', '#775DD0']
-		  }
-		}
-	  }
+	  const option = barMarkerOptions()
 		
   return (
     <div className="col-lg-4 col-md-6 col-12">
@@ -144,7 +123,7 @@ export default function YearWise() {
 										<i className="fas fa-external-link-alt"></i>
 									</a>
 									<div className="crancy-progress-card card-contain-graph">
-									<ReactApexChart options={options} series={series} type="bar" height={350} />
+									<ReactApexChart options={option} series={series} type="bar" height={350} />
 									</div>
 								</div>
 							</div>

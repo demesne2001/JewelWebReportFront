@@ -2,10 +2,22 @@ import React from 'react'
 
 
 import ReactApexChart from 'react-apexcharts';
+import RoundedBar from '../../CustomCharts/RoundedBar';
+
+import { rounBarOptions } from '../../ChartOptions/RoundedBar';
+
 
 export default function SubItemWise() {
-	const series = [14, 23, 21, 17, 15, 10, 12, 17, 21]
-    const options = {
+
+  const catagories = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"]
+  const series = [{
+    name: 'Inflation',
+    data: [20, 30, 42, 12, 41, 36, 32, 23, 14, 8]
+  }]
+
+  const barOption = rounBarOptions(catagories)
+
+  const options = {
       dataLabels: {enabled: true,
       //   formatter: function (val, opts) {
       //     return val
@@ -32,6 +44,7 @@ export default function SubItemWise() {
                   }
                 }
               }]
+              
             }
 
   return (
@@ -43,7 +56,9 @@ export default function SubItemWise() {
 										<i className="fas fa-external-link-alt"></i>
 									</a>
 									<div className="crancy-progress-card card-contain-graph">
-									<ReactApexChart options={options} series={series} type="polarArea" height={390} />
+									{/* <ReactApexChart options={options} series={series} type="polarArea" height={390} /> */}
+                  {/* <RoundedBar/> */}
+                  <ReactApexChart options={barOption} series={series} type="bar" height={350} />
 									</div>
 								</div>
 							</div>

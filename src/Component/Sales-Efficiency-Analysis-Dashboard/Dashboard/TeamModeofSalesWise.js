@@ -1,6 +1,7 @@
 import React from 'react'
 
 import ReactApexChart from 'react-apexcharts';
+import { StackedBar2Options } from '../../ChartOptions/StackedBar2';
 
 export default function TeamModeofSalesWise() {
 	const series = [{
@@ -16,56 +17,12 @@ export default function TeamModeofSalesWise() {
 		name: 'PRODUCT D',
 		data: [21, 7, 25, 13, 22, 8]
 	  }]
-	const options = {
-		chart: {
-		  type: 'bar',
-		  height: 350,
-		  stacked: true,
-		  toolbar: {
-			show: false,
-		},
-		  zoom: {
-			enabled: true
-		  }
-		},
-		responsive: [{
-		  breakpoint: 480,
-		  options: {
-			legend: {
-			  position: 'bottom',
-			  offsetX: -10,
-			  offsetY: 0
-			}
-		  }
-		}],
-		plotOptions: {
-		  bar: {
-			horizontal: false,
-			borderRadius: 0,
-			dataLabels: {
-			  total: {
-				enabled: true,
-				style: {
-				  fontSize: '13px',
-				  fontWeight: 900
-				}
-			  }
-			}
-		  },
-		},
-		xaxis: {
-		  type: 'datetime',
-		  categories: ['01/01/2011 GMT', '01/02/2011 GMT', '01/03/2011 GMT', '01/04/2011 GMT',
-			'01/05/2011 GMT', '01/06/2011 GMT'
-		  ],
-		},
-		legend: {
-		  position: 'bottom',
-		},
-		fill: {
-		  opacity: 1
-		}
-	  }
+
+	const label = ['01/01/2011 GMT', '01/02/2011 GMT', '01/03/2011 GMT', '01/04/2011 GMT',
+	'01/05/2011 GMT', '01/06/2011 GMT'
+  ]  
+	const option = StackedBar2Options(label)
+
   return (
     <div class="col-lg-4 col-md-6 col-12">
 								<div class="graph-card">
@@ -75,7 +32,7 @@ export default function TeamModeofSalesWise() {
 										<i class="fas fa-external-link-alt"></i>
 									</a>
 									<div class="crancy-progress-card card-contain-graph">
-									<ReactApexChart options={options} series={series} type="bar" height={390} />
+									<ReactApexChart options={option} series={series} type="bar" height={390} />
 									</div>
 								</div>
 							</div>

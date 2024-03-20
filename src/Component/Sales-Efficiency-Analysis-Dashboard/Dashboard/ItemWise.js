@@ -23,12 +23,14 @@ export default function ItemWise() {
 
 				<div className="crancy-progress-card card-contain-graph">
 
+				{/* <HbarFilled/> */}
+
 				<div className='container itemwise'>
 
 						{/* <Cylinder/> */}
 						{/* <CylinderFilled/> */}
 
-						{/* <HbarFilled/> */}
+						
 
 						<div className="background_grid">
 

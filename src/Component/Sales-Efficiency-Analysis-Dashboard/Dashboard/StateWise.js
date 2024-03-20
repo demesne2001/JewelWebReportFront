@@ -2,14 +2,11 @@ import React from 'react'
 import ReactApexChart from 'react-apexcharts';
 import Form from 'react-bootstrap/Form';
 
+import { treeMapOptions } from '../../ChartOptions/Treemap';
+
 
 
 export default function StateWise() {
-
-	function dropDownChange(e) {
-		console.log('dropdown change')
-		console.log(e.target.value)
-	}
 
 	const series = [
 		{
@@ -69,42 +66,9 @@ export default function StateWise() {
 			]
 		}
 	]
-	const options = {
-		legend: {
-			show: false
-		},
-		chart: {
-			height: 350,
-			type: 'treemap',
-			toolbar: {
-				show: false,
-			},
-		},
-		title: {
-			text: '',
-			align: 'center'
-		},
-		colors: [
-			'#3B93A5',
-			'#F7B844',
-			'#ADD8C7',
-			'#EC3C65',
-			'#CDD7B6',
-			'#C1F666',
-			'#D43F97',
-			'#1E5D8C',
-			'#421243',
-			'#7F94B0',
-			'#EF6537',
-			'#C0ADDB'
-		],
-		plotOptions: {
-			treemap: {
-				distributed: true,
-				enableShades: false
-			}
-		}
-	}
+
+	const treeOption = treeMapOptions()
+
 	return (
 		<div className="col-lg-4 col-md-6 col-12">
 			<div className="graph-card">
@@ -127,7 +91,7 @@ export default function StateWise() {
 					<i className="fas fa-external-link-alt"></i>
 				</a>
 				<div className="crancy-progress-card card-contain-graph">
-					<ReactApexChart options={options} series={series} type="treemap" height={390} />
+					<ReactApexChart options={treeOption} series={series} type="treemap" height={390} />
 				</div>
 			</div>
 		</div>

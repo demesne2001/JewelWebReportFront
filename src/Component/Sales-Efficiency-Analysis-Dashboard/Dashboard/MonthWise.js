@@ -1,6 +1,8 @@
 import React from 'react'
 
 import ReactApexChart from 'react-apexcharts';
+import { stackedBarOptions } from '../../ChartOptions/StackedBar';
+import { GroupBarOptions } from '../../ChartOptions/GroupBar';
 
 export default function MonthWise() {
 	
@@ -13,50 +15,10 @@ export default function MonthWise() {
 		  data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
 		}]
 
-		const options = {
-		  colors:['#00b150','#002060'],
-		  chart: {
-			type: 'bar',
-			height: 350,
-			toolbar: {
-				show: false,
-			},
-		  },
-		  plotOptions: {
-			bar: {
-			  horizontal: false,
-			  columnWidth: '55%',
-			  endingShape: 'rounded'
-			},
-		  },
-		  dataLabels: {
-			enabled: false
-		  },
-		  stroke: {
-			show: true,
-			width: 2,
-			colors: ['transparent']
-		  },
-		  xaxis: {
-			categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-		  },
-		  yaxis: {
-			title: {
-			  text: 'Thousands'
-			}
-		  },
-		  fill: {
-			opacity: 1
-		  },
-		  tooltip: {
-			y: {
-			  formatter: function (val) {
-				return  val + " Thousand"
-			  }
-			}
-		  }
-		}
+		const labels = ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct']
 
+		const options = GroupBarOptions(labels)
+  
   return (
     <div className="col-lg-4 col-md-6 col-12">
 								<div className="graph-card">

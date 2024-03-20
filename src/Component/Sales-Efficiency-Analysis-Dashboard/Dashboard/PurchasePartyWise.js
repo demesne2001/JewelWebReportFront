@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 
 import ReactApexChart from 'react-apexcharts';
@@ -11,11 +11,18 @@ export default function PurchasePartyWise() {
 	let seriesData = [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2]
 	let xaxiscategories = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
-	let imagearr =[]
+	// let imagearr =[]
+
+	const [imagearr,setImageArr] = useState([])
 
 	function imagepoint(){
+
+		let temp = []
+
 		for (let index = 0; index < seriesData.length; index++) {
-			imagearr.push({
+
+			temp.push({
+
 				x:xaxiscategories[index],
 				y:seriesData[index],
 				marker:{
@@ -23,14 +30,18 @@ export default function PurchasePartyWise() {
                 },
 				image: {
                     path: img,
-                },
+                }
+
 			})
-			
 		}
+		setImageArr(temp)
 	}
+
 	useEffect(()=>{
 		imagepoint()
+		console.log(imagearr)
 	},[])
+
 	const series = [{
         name: 'Inflation',
         data: seriesData
@@ -63,7 +74,7 @@ export default function PurchasePartyWise() {
         
         xaxis: {
           categories: xaxiscategories,
-          position: 'top',
+          position: 'bottom',
           axisBorder: {
             show: false
           },
@@ -88,124 +99,24 @@ export default function PurchasePartyWise() {
         },
         yaxis: {
           axisBorder: {
-            show: false
+            show: true
           },
           axisTicks: {
             show: false,
           },
           labels: {
-            show: false,
+            show: true,
             formatter: function (val) {
               return val + "%";
             }
           }
-        
         },
-        title: {
-          text: 'Monthly Inflation in Argentina, 2002',
-          floating: true,
-          offsetY: 330,
-          align: 'center',
-          style: {
-            color: '#444'
-          }
-        },
-        // annotations: {
-        //     points:[{
-        //         x:'Feb',
-        //         y:3.1,
-        //         marker:{
-        //             size:15,
-        //         },
-        //         // label:{
-        //         //     text:'XY Point Annotation'
-        //         // },
-        //         image: {
-        //             path: img,
-        //           }
-        //     }]
-        //   }
-		// annotations: {
-		// 	yaxis: [
-		// 	  {
-		// 		y: 8800,
-		// 	  }
+
 		annotations: {
-            points:[
-				{
-				  x: 'Jan',
-				  y: 2.3,
-				  marker: { size: 15 },
-				  image: { path: img }
-				},
-				{
-				  x: 'Feb',
-				  y: 3.1,
-				  marker: { size: 15 },
-				  image: { path: img }
-				},
-				{
-				  x: 'Mar',
-				  y: 4,
-				  marker: { size: 15 },
-				  image: { path: img }
-				},
-				{
-				  x: 'Apr',
-				  y: 10.1,
-				  marker: { size: 15 },
-				  image: { path: img }
-				},
-				{
-				  x: 'May',
-				  y: 4,
-				  marker: { size: 15 },
-				  image: { path: img }
-				},
-				{
-				  x: 'Jun',
-				  y: 3.6,
-				  marker: { size: 15 },
-				  image: { path: img }
-				},
-				{
-				  x: 'Jul',
-				  y: 3.2,
-				  marker: { size: 15 },
-				  image: { path: img }
-				},
-				{
-				  x: 'Aug',
-				  y: 2.3,
-				  marker: { size: 15 },
-				  image: { path: img }
-				},
-				{
-				  x: 'Sep',
-				  y: 1.4,
-				  marker: { size: 15 },
-				  image: { path: img }
-				},
-				{
-				  x: 'Oct',
-				  y: 0.8,
-				  marker: { size: 15 },
-				  image: { path: img }
-				},
-				{
-				  x: 'Nov',
-				  y: 0.5,
-				  marker: { size: 15 },
-				  image: { path: img }
-				},
-				{
-				  x: 'Dec',
-				  y: 0.2,
-				  marker: { size: 15 },
-				  image: { path: img }
-				}
-			  ]
+			points: imagearr
 		}
+        
+		
       }
   return (
     
