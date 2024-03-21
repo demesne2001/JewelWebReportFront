@@ -53,20 +53,17 @@ export function patternedPieOptions(labels){
         theme: {
           palette: 'palette2'
         },
-        title: {
-          text: "Favourite Movie Type"
-        },
-        responsive: [{
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: 'bottom'
-            }
-          }
-        }]
+        // responsive: [{
+        //   breakpoint: 480,
+        //   options: {
+        //     chart: {
+        //       width: 200
+        //     },
+        //     legend: {
+        //       position: 'bottom'
+        //     }
+        //   }
+        // }]
       }
     
     return options

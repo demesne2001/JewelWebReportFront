@@ -5084,9 +5084,10 @@ select,
 }
 .crancy-progress-card.card-contain-graph{
     border-radius: 0px 0px 10px 10px;
-    padding-top: 22px;;
-    max-height: fit-content; 
+    padding-top: 22px;
+    max-height: -moz-fit-content;
     text-align: center;
+    height: 380px;
 }
 .sidemenu{
     font-size: 22px;

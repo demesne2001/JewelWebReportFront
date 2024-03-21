@@ -20,7 +20,7 @@ export default function DesignCatalogueWise() {
 										<i className="fas fa-external-link-alt"></i>
 									</a>
 									<div className="crancy-progress-card card-contain-graph">
-									<ReactApexChart options={pieOptions} series={series} type="donut" height={390} />
+									<ReactApexChart options={pieOptions} series={series} type="donut" />
 									</div>
 								</div>
 							</div>

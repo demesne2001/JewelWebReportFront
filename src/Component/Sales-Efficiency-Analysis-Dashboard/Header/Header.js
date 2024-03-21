@@ -103,18 +103,15 @@ export default function Header() {
 			</div>
 		</header>
 
-		<Modal show={filterFlag}  onHide={handleOnClose}  backdrop="static"  keyboard={false}  size='xl'>
-
+		<Modal className = "modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl modal-filter" show={filterFlag}  onHide={handleOnClose}  backdrop="static"  keyboard={false}  size='xl'>
 		{/* <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
 		aria-labelledby="staticBackdropLabel" aria-hidden="true"> */}
 
-		<div class="modal-dialog modal-dialog-c`entered modal-dialog-scrollable modal-xl modal-filter" id="staticBackdrop" data-bs-backdrop="static">`
+		{/* <div class="modal-dialog modal-dialog-c`entered modal-dialog-scrollable modal-xl modal-filter" id="staticBackdrop" data-bs-backdrop="static"  data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true"> */}
 			<div class="modal-content">
 				
-
-                <Modal.Header closeButton>
-
-					<div class="modal-body-header">
+                <Modal.Header class="modal-body-header" closeButton>
+					
 						<div class="container">
 							<div class="card-graph-detail">
 								<div class="row">
@@ -175,19 +172,34 @@ export default function Header() {
 								</div>
 							</div>
 						</div>
-					</div>
+					
                 </Modal.Header>
 
 
-                <Modal.Body>
-				<div class="modal-body">
+                <Modal.Body class="modal-body">				
 					<div class="container">
 						<form>
 							<div class="row">
 								<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
 									<div class="card-filter-contain">
-										<i class="fas fa-chart-pie"></i>
-										<label for="sel1" class="form-label">Branch</label>
+									<i class="fa-solid fa-building"></i>
+										<label for="sel1" class="form-label">Company</label>
+										<div class="dropdown">
+											<select class="selectpicker" multiple aria-label="Default select example"
+												data-live-search="true">
+												<option value="one">One</option>
+												<option value="two">Two</option>
+												<option value="three">Three</option>
+												<option value="four">Four</option>
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+									<div class="card-filter-contain">
+										<i class="fas fa-globe"></i>
+										<label for="sel1" class="form-label">Region </label>
 										<div class="dropdown">
 											<select class="selectpicker" multiple aria-label="Default select example"
 												data-live-search="true">
@@ -234,8 +246,8 @@ export default function Header() {
 
 								<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
 									<div class="card-filter-contain">
-										<i class="fas fa-globe"></i>
-										<label for="sel1" class="form-label">Region </label>
+										<i class="fas fa-chart-area"></i>
+										<label for="sel1" class="form-label">Item Group</label>
 										<div class="dropdown">
 											<select class="selectpicker" multiple aria-label="Default select example"
 												data-live-search="true">
@@ -248,6 +260,21 @@ export default function Header() {
 									</div>
 								</div>
 
+								<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+									<div class="card-filter-contain">
+										<i class="fas fa-boxes"></i>
+										<label for="sel1" class="form-label">Product</label>
+										<div class="dropdown">
+											<select class="selectpicker" multiple aria-label="Default select example"
+												data-live-search="true">
+												<option value="one">One</option>
+												<option value="two">Two</option>
+												<option value="three">Three</option>
+												<option value="four">Four</option>
+											</select>
+										</div>
+									</div>
+								</div>
 
 								<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
 									<div class="card-filter-contain">
@@ -281,21 +308,7 @@ export default function Header() {
 									</div>
 								</div>
 
-								<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-									<div class="card-filter-contain">
-										<i class="fas fa-chart-area"></i>
-										<label for="sel1" class="form-label">Item Group</label>
-										<div class="dropdown">
-											<select class="selectpicker" multiple aria-label="Default select example"
-												data-live-search="true">
-												<option value="one">One</option>
-												<option value="two">Two</option>
-												<option value="three">Three</option>
-												<option value="four">Four</option>
-											</select>
-										</div>
-									</div>
-								</div>
+								
 
 								<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
 									<div class="card-filter-contain">
@@ -313,64 +326,6 @@ export default function Header() {
 									</div>
 								</div>
 
-
-								<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-									<div class="card-filter-contain">
-										<i class="fas fa-people-carry"></i>
-										<label for="sel1" class="form-label">Purchase Party</label>
-										<button type="button" class="filter-dropdown" data-bs-toggle="modal"
-											data-bs-target="#modal2" aria-label="Default select example"
-											>
-											Select Purchase Party
-										</button>
-									</div>
-								</div>
-
-								<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-									<div class="card-filter-contain">
-										<i class="fas fa-handshake"></i>
-										<label for="sel1" class="form-label">Sales Party</label>
-										<button type="button" class="filter-dropdown" data-bs-toggle="modal"
-											data-bs-target="#modal3" aria-label="Default select example"
-											>
-											Select Sales Party
-										</button>
-									</div>
-								</div>
-
-								<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-									<div class="card-filter-contain">
-										<i class="fas fa-users"></i>
-										<label for="sel1" class="form-label">Saleman</label>
-										<div class="dropdown">
-											<select class="selectpicker" multiple aria-label="Default select example"
-												data-live-search="true">
-												<option value="one">One</option>
-												<option value="two">Two</option>
-												<option value="three">Three</option>
-												<option value="four">Four</option>
-											</select>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-									<div class="card-filter-contain">
-										<i class="fas fa-boxes"></i>
-										<label for="sel1" class="form-label">Product</label>
-										<div class="dropdown">
-											<select class="selectpicker" multiple aria-label="Default select example"
-												data-live-search="true">
-												<option value="one">One</option>
-												<option value="two">Two</option>
-												<option value="three">Three</option>
-												<option value="four">Four</option>
-											</select>
-										</div>
-									</div>
-								</div>
-
-
 								<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
 									<div class="card-filter-contain">
 										<i class="fas fa-gem"></i>
@@ -385,40 +340,8 @@ export default function Header() {
 
 								<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
 									<div class="card-filter-contain">
-										<i class="fas fa-calendar-week"></i>
-										<label for="sel1" class="form-label">Month</label>
-										<div class="dropdown">
-											<select class="selectpicker" multiple aria-label="Default select example"
-												data-live-search="true">
-												<option value="one">One</option>
-												<option value="two">Two</option>
-												<option value="three">Three</option>
-												<option value="four">Four</option>
-											</select>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-									<div class="card-filter-contain">
-										<i class="fas  fa-calendar-alt"></i>
-										<label for="sel1" class="form-label">Year</label>
-										<div class="dropdown">
-											<select class="selectpicker" multiple aria-label="Default select example"
-												data-live-search="true">
-												<option value="one">One</option>
-												<option value="two">Two</option>
-												<option value="three">Three</option>
-												<option value="four">Four</option>
-											</select>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-									<div class="card-filter-contain">
-										<i class="fas fa-chart-line"></i>
-										<label for="sel1" class="form-label">Sale Aging</label>
+										<i class="fas fa-users"></i>
+										<label for="sel1" class="form-label">Saleman</label>
 										<div class="dropdown">
 											<select class="selectpicker" multiple aria-label="Default select example"
 												data-live-search="true">
@@ -463,16 +386,88 @@ export default function Header() {
 									</div>
 								</div>
 
+								<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+									<div class="card-filter-contain">
+										<i class="fas fa-chart-line"></i>
+										<label for="sel1" class="form-label">Sale Aging</label>
+										<div class="dropdown">
+											<select class="selectpicker" multiple aria-label="Default select example"
+												data-live-search="true">
+												<option value="one">One</option>
+												<option value="two">Two</option>
+												<option value="three">Three</option>
+												<option value="four">Four</option>
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+									<div class="card-filter-contain">
+										<i class="fas fa-people-carry"></i>
+										<label for="sel1" class="form-label">Purchase Party</label>
+										<button type="button" class="filter-dropdown" data-bs-toggle="modal"
+											data-bs-target="#modal2" aria-label="Default select example"
+											>
+											Select Purchase Party
+										</button>
+									</div>
+								</div>
+
+								<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+									<div class="card-filter-contain">
+										<i class="fas fa-handshake"></i>
+										<label for="sel1" class="form-label">Sales Party</label>
+										<button type="button" class="filter-dropdown" data-bs-toggle="modal"
+											data-bs-target="#modal3" aria-label="Default select example"
+											>
+											Select Sales Party
+										</button>
+									</div>
+								</div>
+
+								
+
+								{/* <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+									<div class="card-filter-contain">
+										<i class="fas fa-calendar-week"></i>
+										<label for="sel1" class="form-label">Month</label>
+										<div class="dropdown">
+											<select class="selectpicker" multiple aria-label="Default select example"
+												data-live-search="true">
+												<option value="one">One</option>
+												<option value="two">Two</option>
+												<option value="three">Three</option>
+												<option value="four">Four</option>
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+									<div class="card-filter-contain">
+										<i class="fas  fa-calendar-alt"></i>
+										<label for="sel1" class="form-label">Year</label>
+										<div class="dropdown">
+											<select class="selectpicker" multiple aria-label="Default select example"
+												data-live-search="true">
+												<option value="one">One</option>
+												<option value="two">Two</option>
+												<option value="three">Three</option>
+												<option value="four">Four</option>
+											</select>
+										</div>
+									</div>
+								</div> */}
+								
+
 							</div>
 						</form>
 					</div>
-				</div>   
-
-                       
 
                 </Modal.Body>
 
-                <Modal.Footer>
+                <Modal.Footer class="modal-footer">
 
                     <button type="button" class="filter-footer-button" data-mdb-ripple-init onClick={handleOnClose}> Close </button>
                     <button type="button" class="filter-footer-button" data-mdb-ripple-init>Apply</button>
@@ -484,8 +479,8 @@ export default function Header() {
 
                 </Modal.Footer>
 
-				</div>
-			 </div>
+			</div>
+			 {/* </div> */}
 			{/* </div> */}
 			</Modal>
 	

@@ -15,6 +15,10 @@ import './Component/Assets/css/font-awesome-all.min.css'
 import './Component/Assets/css/reset.css'
 import './Component/Assets/css/style.css'
 
+// import './Component/Assets/css/style copy.css'
+
+import './Component/Assets/css/Custom.css'
+
 
 
 // import bootstrapSelectMin from './Component/Assets/js/bootstrap-select.min';
