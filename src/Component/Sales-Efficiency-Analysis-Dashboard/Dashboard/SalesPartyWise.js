@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Gradient from "javascript-color-gradient";
 import ReactApexChart from 'react-apexcharts';
+import BlackDots from '../../Assets/image/Dots.png'
 
 export default function SalesPartyWise() {
 
@@ -42,16 +43,32 @@ export default function SalesPartyWise() {
 		setSales(j)
 	}
 
+	function handledropdownMenu() {
+        document.getElementById("myDropdownSales").style.display === "block" ? document.getElementById("myDropdownSales").style.display = "none" : document.getElementById("myDropdownSales").style.display = "block";
+      }
+
+      function handleSelectedChart(num) {
+        // setBranchWiseChart(num)
+      }
+
 
 	return (
 
 		<div className="col-lg-4 col-md-6 col-12">
 			<div className="graph-card">
-				<a href="#" target="_self" className="card-title-graph">
+				<div href="#" target="_self" className="card-title-graph">
 					<p><i className="fas fa-handshake"></i>
 						Sales Party Wise</p>
 					<i className="fas fa-external-link-alt"></i>
-				</a>
+					<p class="geex-content__header__quickaction__link  geex-btn__customizer dots" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu} >
+						<img src={BlackDots} className='dropbtn' />
+					</p>
+					<div id="myDropdownSales" class="dropdown-content" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu}>
+						<a id='option1' onClick={() => handleSelectedChart(1)}>Tree Map</a><hr class="custom-hr" />
+						<a id='option2' onClick={() => handleSelectedChart(2)}>Radial Bar</a><hr class="custom-hr" />
+						<a id='option2' onClick={() => handleSelectedChart(3)}>Semi Doughnut</a><hr class="custom-hr" />
+					</div>
+				</div>
 				<div className="crancy-progress-card card-contain-graph">
 					{/* <ReactApexChart options={options} series={series} type="bar" height={350}/> */}
 					<table align='center' rules='rows' border='white' style={{border:'white'}}>

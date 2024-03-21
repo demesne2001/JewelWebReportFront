@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useRef } from 'react'
 import ReactApexChart from 'react-apexcharts';
 
-import Dropdown from 'react-bootstrap/Dropdown';
-// import BlackDots from '../../Assets/img/svg/BlackDots.svg'
+
 import BlackDots from '../../Assets/image/Dots.png'
 
 import { radialBarOptions } from '../../ChartOptions/RadialBar';
 import { DoughnutOptions } from '../../ChartOptions/Doughnut';
-import { click } from '@testing-library/user-event/dist/click';
-import { Network } from '@visx/visx';
+import { render } from '@testing-library/react';
+
+
 
 
 export default function BranchWise() {
@@ -17,26 +17,52 @@ export default function BranchWise() {
 
 	const series = [76, 67, 61, 90]
 	const label = ['Vimeo', 'Messenger', 'Facebook', 'LinkedIn']
-
+	
 	const radialOption = radialBarOptions(label)
 	const Doughnut = DoughnutOptions(label)
 
-	const [branchWiseChart, setBranchWiseChart] = useState(0)
+	// const [radialOption,setRadialOption] = useState(radialBarOptions(label))
+	// const [Doughnut,SetDoughnut] = useState(DoughnutOptions(label))
+
+	// const radialOption = useRef(radialBarOptions(label))
+	// const Doughnut = useRef(DoughnutOptions(label))
+
+	// const[option,setOption] = useState()
+	
+	const [branchWiseChart, setBranchWiseChart] = useState(1)
 
 	useEffect(() => {
+		// if (branchWiseChart === 1) {
+			
+		// 	setOption(radialOption)
+		// 	// return(<div> <p>RadialBar</p> </div>)
+		// 	// return (<div><ReactApexChart options={option} series={series} type="radialBar" height={380} /></div>)
+			
+		// }
+		// else if (branchWiseChart === 2) { 		
+			
+		// 	setOption(Doughnut)
+		// 	// return(<div> <p>Donut </p></div>)
+		// 	// return (<div><ReactApexChart options={Doughnut} series={series} type="donut" height={380} /></div>)
+		// }
 
 	}, [branchWiseChart])
 
 	function handleSelectedChart(num) {
-		setBranchWiseChart(num)
+		setBranchWiseChart(num)		
 	}
 
 	function returnSelectedChart() {
 		if (branchWiseChart === 1) {
-			return (<ReactApexChart options={radialOption} series={series} type="radialBar" height={380} />)
+			
+			// return(<div> <p>RadialBar</p> </div>)
+			return (<div><ReactApexChart options={radialOption} series={series} type="radialBar" height={380} /></div>)
+			
 		}
-		else {
-			return (<ReactApexChart options={Doughnut} series={series} type="donut" height={380} />)
+		else if (branchWiseChart === 2) { 		
+			
+			// return(<div> <p>Pie </p></div>)
+			return (<div><ReactApexChart options={Doughnut} series={series} type="donut" height={380} /></div>)
 		}
 	}
 
@@ -85,7 +111,32 @@ export default function BranchWise() {
 
 				<div className="crancy-progress-card card-contain-graph">
 
-					{returnSelectedChart()}
+					{/* <h1>Hello</h1> */}
+
+					{/* {()=>{return (returnSelectedChart())}} */}
+
+				{/* <returnSelectedChart/> */}
+				{returnSelectedChart()}
+				{/* {branchWiseChart === 1?<ReactApexChart options={radialOption} series={series} type="radialBar" height={380} />:<ReactApexChart options={Doughnut} series={series} type="donut" height={380} /> } */}
+					
+					{/* { 
+					
+						(branchWiseChart === 1) && (<ReactApexChart options={radialOption} series={series} type="radialBar" height={380} />)
+						(branchWiseChart === 2) && (<ReactApexChart options={Doughnut} series={series} type="donut" height={380} />)
+					
+					} */}
+
+					 {/* {()=>{
+						if (branchWiseChart === 1) {
+
+							
+							<ReactApexChart options={radialOption} series={series} type="radialBar" height={380} />
+							
+						}
+						else if (branchWiseChart === 2) { 			
+							<ReactApexChart options={Doughnut} series={series} type="donut" height={380} />
+						}
+					 }} */}
 
 				</div>
 

@@ -4,6 +4,9 @@ export function DoughnutOptions(labels){
         chart: {
           type: 'donut',
         },
+        legend: {
+          show: true
+        },
         colors:['#8458b0','#da3e00'],
 
         labels: labels,
@@ -23,9 +26,9 @@ export function DoughnutOptions(labels){
             }
           }
         },
-        responsive: [{
-          breakpoint: 2000,
-        }]
+        // responsive: [{
+        //   breakpoint: 350,
+        // }]
       }
 
     return options

@@ -23,7 +23,6 @@ import YearWise from './YearWise'
 import SalesAgingWise from './SalesAgingWise'
 import ModeofSalesWise from './ModeofSalesWise'
 import TeamModeofSalesWise from './TeamModeofSalesWise'
-import Pie1 from '../../Chartjs/Pie1'
 
 // import bootstrapSelectMin from '../../Assets/js/bootstrap-select.min';
 // import bootstrapMin from '../../Assets/js/bootstrap.min'
@@ -46,7 +45,6 @@ export default function Dashboard() {
                             <div className="row">
 
                                 <Piegraph1 />
-                                {/* <Pie1/> */}
                                 <SalesEfficiency />
                                 <ReturnTrend/>
                                 <Collection/>

@@ -73,9 +73,17 @@ export default function StateWise() {
 	]
 	const label = []
 	
-	const treeOption = treeMapOptions()
-	const radialOption = radialBarOptions(label)
-	const semiDoughnutOption = semiDoughnutOptions(label)
+	const series2 = [44, 55, 13, 43, 22]
+
+	const series1 = [76, 67, 61, 90]
+
+	// const treeOption = treeMapOptions()
+	const [treeOption,setTreeOption] = useState(treeMapOptions())
+	const [radialOption,setRadialOption] = useState(radialBarOptions(label))
+	const [semiDoughnutOption,setSemiDoughnutOption] = useState(semiDoughnutOptions(label))
+
+	// const radialOption = radialBarOptions(label)
+	// const semiDoughnutOption = semiDoughnutOptions(label)
 	
 	const [stateWiseChart,setStateWiseChart] = useState(1)
 
@@ -90,13 +98,16 @@ export default function StateWise() {
 
 	function returnSelectedChart() {
 		if (stateWiseChart === 1) {
+
 			return (<ReactApexChart options={treeOption} series={series} type="treemap" height={380} />)
 		}
 		else if(stateWiseChart === 2){
-			return (<ReactApexChart options={radialOption} series={series} type="donut" />)
+			
+			return (<ReactApexChart options={radialOption} series={series1} type="bar" height={380} />)
 		}
 		else if(stateWiseChart === 3){
-			return(<ReactApexChart options={semiDoughnutOption} series={series} type="donut" height={390}/>)
+			console.log(semiDoughnutOption)
+			return(<ReactApexChart options={semiDoughnutOption} series={series2} type="donut" height={380} />)
 		}
 	}
 
@@ -117,8 +128,9 @@ export default function StateWise() {
 						<img src={BlackDots} className='dropbtn' />
 					</p>
 					<div id="myDropdownState" class="dropdown-content" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu}>
-						<a id='option1' onClick={() => handleSelectedChart(1)}>Radial Bar</a><hr class="custom-hr" />
-						<a id='option2' onClick={() => handleSelectedChart(2)}>Pie</a><hr class="custom-hr" />
+						<a id='option1' onClick={() => handleSelectedChart(1)}>Tree Map</a><hr class="custom-hr" />
+						<a id='option2' onClick={() => handleSelectedChart(2)}>Radial Bar</a><hr class="custom-hr" />
+						<a id='option2' onClick={() => handleSelectedChart(3)}>Semi Doughnut</a><hr class="custom-hr" />
 					</div>
 				</div>
 				<div className="crancy-progress-card card-contain-graph">
