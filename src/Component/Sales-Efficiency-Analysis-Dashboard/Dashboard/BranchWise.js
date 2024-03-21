@@ -8,6 +8,7 @@ import BlackDots from '../../Assets/image/Dots.png'
 import { radialBarOptions } from '../../ChartOptions/RadialBar';
 import { DoughnutOptions } from '../../ChartOptions/Doughnut';
 import { click } from '@testing-library/user-event/dist/click';
+import { Network } from '@visx/visx';
 
 
 export default function BranchWise() {
@@ -39,18 +40,11 @@ export default function BranchWise() {
 		}
 	}
 
-	function handledropdownMenu() {
-		document.getElementById("myDropdown").style.display === "none" ? document.getElementById("myDropdown").style.display = "block" : document.getElementById("myDropdown").style.display = "none";
-	}
-
-	window.onclick = function (event) {
-		if (!event.target.matches('.dropbtn') && !event.target.matches('#default') && !event.target.matches('#lakh') && !event.target.matches('#million') && !event.target.matches('#thousand')) {
-			console.log("hii");
-			if (document.getElementsByClassName("dropdown-content")[0] !== undefined) {
-				document.getElementsByClassName("dropdown-content")[0].style.display = "none";
-			}
-
-		}
+	function handledropdownMenu(e) {
+		console.log('Branch')
+		// console.log(e)
+		// console.log(document.getElementById("myDropdownBranch").style.display)
+		document.getElementById("myDropdownBranch").style.display === "block" ? document.getElementById("myDropdownBranch").style.display = "none" : document.getElementById("myDropdownBranch").style.display = "block";
 	}
 
 
@@ -69,12 +63,12 @@ export default function BranchWise() {
 
 
 
-					<a class="geex-content__header__quickaction__link  geex-btn__customizer dots" onClick={handledropdownMenu} >
+					<p class="geex-content__header__quickaction__link  geex-btn__customizer dots" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu}  >
 						<img src={BlackDots} className='dropbtn' />
-					</a>
-					<div id="myDropdown" class="dropdown-content">
-						<a id='option1' onClick={() => handleSelectedChart(1)}>Radial Bar</a><hr class="custom-hr" />
-						<a id='option2' onClick={() => handleSelectedChart(2)}>Pie</a><hr class="custom-hr" />
+					</p>
+					<div id="myDropdownBranch" class="dropdown-content" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu}>
+						<a id='option1' onClick={() => {handleSelectedChart(1); }}>Radial Bar</a><hr class="custom-hr" />
+						<a id='option2' onClick={() => {handleSelectedChart(2); }}>Pie</a><hr class="custom-hr" />
 					</div>
 
 

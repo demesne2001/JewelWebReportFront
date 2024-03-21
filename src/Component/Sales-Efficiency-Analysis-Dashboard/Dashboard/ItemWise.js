@@ -4,24 +4,47 @@ import HbarFilled from '../../CustomCharts/HbarFilled'
 import Cylinder from '../../CustomCharts/Cylinder3d.js/Cylinder'
 import CylinderFilled from '../../CustomCharts/CylinderFilled/CylinderFilled'
 
+import BlackDots from '../../Assets/image/Dots.png'
+
 export default function ItemWise() {
 
 	const lineDiffrence = ["100%","80%","60%","40%","20%","0%"]  
 
 	const label = ["x1","x2","x3","x4","x5","x6"]
 	const data = ["95%","83%","80%","93%","65%","78%"]	
+
+
+	function handledropdownMenu() {
+		document.getElementById("myDropdownItem").style.display === "block" ? document.getElementById("myDropdownItem").style.display = "none" : document.getElementById("myDropdownItem").style.display = "block";
+	}
+	
+
+	function handleSelectedChart(num) {
+		// setBranchWiseChart(num)
+	}
 	
 	return (
 
 		<div className="col-lg-4 col-md-6 col-12">
 			<div className="graph-card">
-				<a href="#" target="_self" className="card-title-graph">
+				<div className="card-title-graph">
 					<p><i className="fas fa-project-diagram"></i>
 						Item Wise</p>
 					<i className="fas fa-external-link-alt"></i>
-				</a>
+
+					<p class="geex-content__header__quickaction__link  geex-btn__customizer dots" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu} >
+						<img src={BlackDots} className='dropbtn' />
+				</p>
+					<div id="myDropdownItem" class="dropdown-content" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu}>
+						<a id='option1' onClick={() => handleSelectedChart(1)}>Radial Bar</a><hr class="custom-hr" />
+						<a id='option2' onClick={() => handleSelectedChart(2)}>Pie</a><hr class="custom-hr" />
+					</div>
+				</div>
+
+				
 
 				<div className="crancy-progress-card card-contain-graph">
+				
 
 				{/* <HbarFilled/> */}
 

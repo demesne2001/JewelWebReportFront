@@ -8,7 +8,7 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    /* top: 14%; */
+    top: -20%;
     right: 10px;
     background-color: #0095f8;
     /* min-width: 80px; */

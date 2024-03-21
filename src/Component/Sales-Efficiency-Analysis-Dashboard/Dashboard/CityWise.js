@@ -20,19 +20,12 @@ export default function CityWise() {
 
 	const stackedBarOption = stackedBarOptions(label)
 
+	
 	function handledropdownMenu() {
-		document.getElementById("myDropdown").style.display === "none" ? document.getElementById("myDropdown").style.display = "block" : document.getElementById("myDropdown").style.display = "none";
+		document.getElementById("myDropdownCity").style.display === "block" ? document.getElementById("myDropdownCity").style.display = "none" : document.getElementById("myDropdownCity").style.display = "block";
 	}
-
-	window.onclick = function (event) {
-		if (!event.target.matches('.dropbtn') && !event.target.matches('#default') && !event.target.matches('#lakh') && !event.target.matches('#million') && !event.target.matches('#thousand')) {
-			console.log("hii");
-			if (document.getElementsByClassName("dropdown-content")[0] !== undefined) {
-				document.getElementsByClassName("dropdown-content")[0].style.display = "none";
-			}
-
-		}
-	}
+	
+	
 
 	function handleSelectedChart(num) {
 		// setBranchWiseChart(num)
@@ -48,10 +41,10 @@ export default function CityWise() {
 						City Wise</p>
 					<i className="fas fa-external-link-alt"></i>
 
-					<a class="geex-content__header__quickaction__link  geex-btn__customizer dots" onClick={handledropdownMenu} >
+					<p class="geex-content__header__quickaction__link  geex-btn__customizer dots" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu} >
 						<img src={BlackDots} className='dropbtn' />
-					</a>
-					<div id="myDropdown" class="dropdown-content">
+					</p>
+					<div id="myDropdownCity" class="dropdown-content" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu}>
 						<a id='option1' onClick={() => handleSelectedChart(1)}>Radial Bar</a><hr class="custom-hr" />
 						<a id='option2' onClick={() => handleSelectedChart(2)}>Pie</a><hr class="custom-hr" />
 					</div>

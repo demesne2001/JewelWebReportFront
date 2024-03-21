@@ -101,8 +101,9 @@ export default function StateWise() {
 	}
 
 	function handledropdownMenu() {
-		document.getElementById("myDropdown").style.display === "none" ? document.getElementById("myDropdown").style.display = "block" : document.getElementById("myDropdown").style.display = "none";
+		document.getElementById("myDropdownState").style.display === "block" ? document.getElementById("myDropdownState").style.display = "none" : document.getElementById("myDropdownState").style.display = "block";
 	}
+	
 
 	return (
 		<div className="col-lg-4 col-md-6 col-12">
@@ -112,10 +113,10 @@ export default function StateWise() {
 						State Wise</p>
 					<i className="fas fa-external-link-alt"></i>
 
-					<a class="geex-content__header__quickaction__link  geex-btn__customizer dots" onClick={handledropdownMenu} >
+					<p class="geex-content__header__quickaction__link  geex-btn__customizer dots" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu} >
 						<img src={BlackDots} className='dropbtn' />
-					</a>
-					<div id="myDropdown" class="dropdown-content">
+					</p>
+					<div id="myDropdownState" class="dropdown-content" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu}>
 						<a id='option1' onClick={() => handleSelectedChart(1)}>Radial Bar</a><hr class="custom-hr" />
 						<a id='option2' onClick={() => handleSelectedChart(2)}>Pie</a><hr class="custom-hr" />
 					</div>
