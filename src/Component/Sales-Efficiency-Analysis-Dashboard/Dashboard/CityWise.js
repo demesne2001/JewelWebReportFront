@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ReactApexChart from 'react-apexcharts';
 import API from '../../Utility/API';
 import { useEffect,useState } from 'react';
@@ -6,8 +6,11 @@ import post from '../../Utility/APIHandle'
 
 import { stackedBarOptions } from '../../ChartOptions/StackedBar';
 import BlackDots from '../../Assets/image/Dots.png'
+import contex from '../../contex/Contex';
 
 export default function CityWise() {
+
+	const contexData = useContext(contex)
 
 	const label = ['City 1', 'City 2', 'City 3', 'City 1', 'City 2', 'City 3'
 	]
@@ -49,21 +52,28 @@ export default function CityWise() {
 
 
     useEffect(()=>{
-        getdata()
-    },[])
+
+		setPostData(contexData.state)
+
+	},[contexData.state])
+
+	useEffect(()=>{
+		getdata()
+	},[postData])
+
     
 
     function getdata() {
 
 		let temp1 = []
 
-        post(postData,API.GetCityWise,'post')
-        .then((res)=>{
+        // post(postData,API.GetCityWise,'post')
+        // .then((res)=>{
 
-            temp1.push({
+        //     temp1.push({
 
-			})
-        })
+		// 	})
+        // })
     }
 	
 	function handledropdownMenu() {
@@ -86,13 +96,13 @@ export default function CityWise() {
 						City Wise</p>
 					<i className="fas fa-external-link-alt"></i>
 
-					<p class="geex-content__header__quickaction__link  geex-btn__customizer dots" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu} >
+					{/* <p class="geex-content__header__quickaction__link  geex-btn__customizer dots" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu} >
 						<img src={BlackDots} className='dropbtn' />
 					</p>
 					<div id="myDropdownCity" class="dropdown-content" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu}>
 						<a id='option1' onClick={() => handleSelectedChart(1)}>Radial Bar</a><hr class="custom-hr" />
 						<a id='option2' onClick={() => handleSelectedChart(2)}>Pie</a><hr class="custom-hr" />
-					</div>
+					</div> */}
 				</div>
 
 				<div className="crancy-progress-card card-contain-graph">

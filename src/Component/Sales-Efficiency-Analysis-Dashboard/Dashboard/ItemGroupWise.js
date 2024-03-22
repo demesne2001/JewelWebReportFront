@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import API from '../../Utility/API';
 import { useEffect,useState } from 'react';
 import post from '../../Utility/APIHandle'
@@ -8,8 +8,12 @@ import ReactApexChart from 'react-apexcharts';
 import { pieOptions } from '../../ChartOptions/Pie';
 
 import BlackDots from '../../Assets/image/Dots.png'
+import contex from '../../contex/Contex';
 
 export default function ItemGroupWise() {
+
+  const contexData = useContext(contex)
+
 	const series = [44, 55, 13, 43, 22]
 
 	const labels = ['ItemGroup A', 'ItemGroup B', 'ItemGroup C', 'ItemGroup D', 'ItemGroup E']
@@ -42,9 +46,15 @@ export default function ItemGroupWise() {
 
 
     useEffect(()=>{
-        getdata()
-    },[])
 
+      setPostData(contexData.state)
+  
+    },[contexData.state])
+  
+    useEffect(()=>{
+      getdata()
+    },[postData])
+  
 	function getdata() {
 
 		let temp1 = []

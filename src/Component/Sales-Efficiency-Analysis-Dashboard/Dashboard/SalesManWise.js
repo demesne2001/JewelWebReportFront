@@ -5,6 +5,8 @@ import BlackDots from '../../Assets/image/Dots.png'
 
 export default function SalesManWise() {
 
+	
+
 	function handledropdownMenu() {
         document.getElementById("myDropdownSalesman").style.display === "block" ? document.getElementById("myDropdownSalesman").style.display = "none" : document.getElementById("myDropdownSalesman").style.display = "block";
       }
@@ -19,14 +21,14 @@ export default function SalesManWise() {
 										<p><i className="fas fa-users"></i>
 											Salesmen Wise</p>
 										<i className="fas fa-external-link-alt"></i>
-										<p class="geex-content__header__quickaction__link  geex-btn__customizer dots" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu} >
+										{/* <p class="geex-content__header__quickaction__link  geex-btn__customizer dots" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu} >
 						<img src={BlackDots} className='dropbtn' />
 					</p>
 					<div id="myDropdownSalesman" class="dropdown-content" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu}>
 						<a id='option1' onClick={() => handleSelectedChart(1)}>Tree Map</a><hr class="custom-hr" />
 						<a id='option2' onClick={() => handleSelectedChart(2)}>Radial Bar</a><hr class="custom-hr" />
 						<a id='option2' onClick={() => handleSelectedChart(3)}>Semi Doughnut</a><hr class="custom-hr" />
-					</div>
+					</div> */}
 									</div>
 									<div className="crancy-progress-card card-contain-graph">
 										<img src={salesmanwisepng}/>

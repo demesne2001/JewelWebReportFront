@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useEffect,useState } from 'react';
 
 import HbarFilled from '../../CustomCharts/HbarFilled'
@@ -8,8 +8,11 @@ import CylinderFilled from '../../CustomCharts/CylinderFilled/CylinderFilled'
 import BlackDots from '../../Assets/image/Dots.png'
 import API from '../../Utility/API'
 import post from '../../Utility/APIHandle'
+import contex from '../../contex/Contex';
 
 export default function ItemWise() {
+
+	const contexData = useContext(contex)
 
 	const lineDiffrence = ["100%","80%","60%","40%","20%","0%"]  
 
@@ -52,9 +55,15 @@ export default function ItemWise() {
     })
 
 
-    useEffect(()=>{
-        getdata()
-    },[])
+	useEffect(()=>{
+
+		setPostData(contexData.state)
+
+	},[contexData.state])
+
+	useEffect(()=>{
+		getdata()
+	},[postData])
 
 	function getdata() {
 
@@ -83,13 +92,13 @@ export default function ItemWise() {
 						Item Wise</p>
 					<i className="fas fa-external-link-alt"></i>
 
-					<p class="geex-content__header__quickaction__link  geex-btn__customizer dots" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu} >
+					{/* <p class="geex-content__header__quickaction__link  geex-btn__customizer dots" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu} >
 						<img src={BlackDots} className='dropbtn' />
 				</p>
 					<div id="myDropdownItem" class="dropdown-content" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu}>
 						<a id='option1' onClick={() => handleSelectedChart(1)}>Radial Bar</a><hr class="custom-hr" />
 						<a id='option2' onClick={() => handleSelectedChart(2)}>Pie</a><hr class="custom-hr" />
-					</div>
+					</div> */}
 				</div>
 
 				

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 
 import ReactApexChart from 'react-apexcharts';
@@ -7,9 +7,12 @@ import img from '../../Assets/icons8-person-48.png'
 import BlackDots from '../../Assets/image/Dots.png'
 import API from '../../Utility/API';
 import post from '../../Utility/APIHandle'
+import contex from '../../contex/Contex';
 
 export default function PurchasePartyWise() {
 
+
+  const contexData = useContext(contex)
 
   let seriesData = [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2]
   let xaxiscategories = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -44,9 +47,16 @@ export default function PurchasePartyWise() {
   })
 
 
-  useEffect(() => {
-    getdata()
-  }, [])
+  useEffect(()=>{
+
+		setPostData(contexData.state)
+
+	},[contexData.state])
+
+	useEffect(()=>{
+		getdata()
+	},[postData])
+
 
   function getdata() {
 
@@ -186,14 +196,14 @@ export default function PurchasePartyWise() {
           <p><i className="fas fa-people-carry"></i>
             Purchase Party Wise</p>
           <i className="fas fa-external-link-alt"></i>
-          <p class="geex-content__header__quickaction__link  geex-btn__customizer dots" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu} >
+          {/* <p class="geex-content__header__quickaction__link  geex-btn__customizer dots" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu} >
             <img src={BlackDots} className='dropbtn' />
           </p>
           <div id="myDropdownPurchase" class="dropdown-content" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu}>
             <a id='option1' onClick={() => handleSelectedChart(1)}>Tree Map</a><hr class="custom-hr" />
             <a id='option2' onClick={() => handleSelectedChart(2)}>Radial Bar</a><hr class="custom-hr" />
             <a id='option2' onClick={() => handleSelectedChart(3)}>Semi Doughnut</a><hr class="custom-hr" />
-          </div>
+          </div> */}
         </div>
         <div className="crancy-progress-card card-contain-graph">
           <ReactApexChart options={options} series={series} type="bar" height={350} />

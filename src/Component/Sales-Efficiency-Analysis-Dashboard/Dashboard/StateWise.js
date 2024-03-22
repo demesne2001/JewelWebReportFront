@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ReactApexChart from 'react-apexcharts';
 import Form from 'react-bootstrap/Form';
 
@@ -7,12 +7,16 @@ import BlackDots from '../../Assets/image/Dots.png'
 import { treeMapOptions } from '../../ChartOptions/Treemap';
 import { radialBarOptions } from '../../ChartOptions/RadialBar';
 import { semiDoughnutOptions } from '../../ChartOptions/semidoughnut';
+import contex from '../../contex/Contex';
+import API from '../../Utility/API';
+import post from '../../Utility/APIHandle';
 
 
 
 export default function StateWise() {
 
-	
+	const contexData = useContext(contex) 
+
 	const series = [
 		{
 			data: [
@@ -77,6 +81,32 @@ export default function StateWise() {
 
 	const series1 = [76, 67, 61, 90]
 
+	const [postData, setPostData] = useState({
+        "strBranch": "",
+        "strState": "",
+        "strCity": "",
+        "strItem": "",
+        "strSubItem": "",
+        "strItemGroup": "",
+        "strItemSubitem": "",
+        "strPurchaseParty": "",
+        "strSalesParty": "",
+        "strSaleman": "",
+        "strProduct": "",
+        "strDesignCatalogue": "",
+        "strSaleAging": "",
+        "strModeofSale": "",
+        "strTeamModeofSale": "",
+        "FromDate": "",
+        "ToDate": "",
+        "strMetalType": "",
+        "strDayBook": "",
+        "PageNo": 0,
+        "PageSize": 0,
+        "Search": ""
+    })
+
+
 	// const treeOption = treeMapOptions()
 	const [treeOption,setTreeOption] = useState(treeMapOptions())
 	const [radialOption,setRadialOption] = useState(radialBarOptions(label))
@@ -90,6 +120,36 @@ export default function StateWise() {
 	useEffect(()=>{
 
 	},[stateWiseChart])
+
+
+	useEffect(()=>{
+
+		setPostData(contexData.state)
+
+	},[contexData.state])
+
+	useEffect(()=>{
+		getdata()
+	},[postData])
+
+
+	function getdata() {
+		
+		let temp1 = []
+
+        post(postData,API.GetStateWise,'post')
+        .then((res)=>{
+
+            // for (let index = 0; index < res.data.lstResult.length; index++) {
+
+			// 	temp1.push({
+					  
+			// 	})
+
+			// }
+			
+        })
+    }
 
 	function handleSelectedChart(num) {
 		setStateWiseChart(num)
@@ -124,14 +184,14 @@ export default function StateWise() {
 						State Wise</p>
 					<i className="fas fa-external-link-alt"></i>
 
-					<p class="geex-content__header__quickaction__link  geex-btn__customizer dots" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu} >
+					{/* <p class="geex-content__header__quickaction__link  geex-btn__customizer dots" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu} >
 						<img src={BlackDots} className='dropbtn' />
 					</p>
 					<div id="myDropdownState" class="dropdown-content" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu}>
 						<a id='option1' onClick={() => handleSelectedChart(1)}>Tree Map</a><hr class="custom-hr" />
 						<a id='option2' onClick={() => handleSelectedChart(2)}>Radial Bar</a><hr class="custom-hr" />
 						<a id='option2' onClick={() => handleSelectedChart(3)}>Semi Doughnut</a><hr class="custom-hr" />
-					</div>
+					</div> */}
 				</div>
 				<div className="crancy-progress-card card-contain-graph">
 					{returnSelectedChart()}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import API from '../../Utility/API';
 import post from '../../Utility/APIHandle'
@@ -11,9 +11,12 @@ import RoundedBar from '../../CustomCharts/RoundedBar';
 import BlackDots from '../../Assets/image/Dots.png'
 
 import { rounBarOptions } from '../../ChartOptions/RoundedBar';
+import contex from '../../contex/Contex';
 
 
 export default function SubItemWise() {
+
+  const contexData= useContext(contex)
 
   const catagories = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"]
   const series = [{
@@ -59,9 +62,16 @@ export default function SubItemWise() {
   })
 
 
-  useEffect(() => {
-    getdata()
-  }, [])
+  useEffect(()=>{
+
+		setPostData(contexData.state)
+
+	},[contexData.state])
+
+	useEffect(()=>{
+		getdata()
+	},[postData])
+
 
   function getdata() {
 
@@ -89,13 +99,13 @@ export default function SubItemWise() {
             Sub-Item Wise</p>
           <i className="fas fa-external-link-alt"></i>
 
-          <p class="geex-content__header__quickaction__link  geex-btn__customizer dots" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu} >
+          {/* <p class="geex-content__header__quickaction__link  geex-btn__customizer dots" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu} >
             <img src={BlackDots} className='dropbtn' />
           </p>
           <div id="myDropdownSubitem" class="dropdown-content" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu}>
             <a id='option1' onClick={() => handleSelectedChart(1)}>Radial Bar</a><hr class="custom-hr" />
             <a id='option2' onClick={() => handleSelectedChart(2)}>Pie</a><hr class="custom-hr" />
-          </div>
+          </div> */}
 
         </div>
 

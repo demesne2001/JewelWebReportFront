@@ -88,13 +88,15 @@ export default function MonthWise() {
 					<p><i className="fas fa-calendar-week"></i>
 						Month Wise</p>
 					<i className="fas fa-external-link-alt"></i>
-					<p class="geex-content__header__quickaction__link  geex-btn__customizer dots" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu} >
+					{/* <p class="geex-content__header__quickaction__link  geex-btn__customizer dots" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu} >
 						<img src={BlackDots} className='dropbtn' />
 					</p>
 					<div id="myDropdownMonth" class="dropdown-content" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu}>
 						<a id='option1' onClick={() => handleSelectedChart(1)}>Radial Bar</a><hr class="custom-hr" />
 						<a id='option2' onClick={() => handleSelectedChart(2)}>Pie</a><hr class="custom-hr" />
-					</div>
+					</div> */}
+
+					
 
 				</div>
 				<div className="crancy-progress-card card-contain-graph">

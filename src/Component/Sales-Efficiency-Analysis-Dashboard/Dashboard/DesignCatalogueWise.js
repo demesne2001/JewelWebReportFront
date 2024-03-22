@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useEffect,useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { patternedPieOptions } from '../../ChartOptions/PatternedPie';
 import BlackDots from '../../Assets/image/Dots.png'
 import API from '../../Utility/API';
 import post from '../../Utility/APIHandle'
+import contex from '../../contex/Contex';
 
 
 export default function DesignCatalogueWise() {
+
+  const contexData = useContext(contex)
+
   const series = [44, 55, 41, 17, 15]
 
   const label = ["Comedy", "Action", "SciFi", "Drama", "Horror"]
@@ -40,9 +44,16 @@ export default function DesignCatalogueWise() {
   })
 
 
-  useEffect(() => {
-    getdata()
-  }, [])
+  useEffect(()=>{
+
+		setPostData(contexData.state)
+
+	},[contexData.state])
+
+	useEffect(()=>{
+		getdata()
+	},[postData])
+
 
   function getdata() {
 
@@ -78,13 +89,13 @@ export default function DesignCatalogueWise() {
           <p><i className="fas fa-gem"></i>
             Design Catalogue Wise</p>
           <i className="fas fa-external-link-alt"></i>
-          <p class="geex-content__header__quickaction__link  geex-btn__customizer dots" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu} >
+          {/* <p class="geex-content__header__quickaction__link  geex-btn__customizer dots" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu} >
             <img src={BlackDots} className='dropbtn' />
           </p>
           <div id="myDropdownDesign" class="dropdown-content" onMouseEnter={handledropdownMenu} onMouseLeave={handledropdownMenu}>
             <a id='option1' onClick={() => handleSelectedChart(1)}>Radial Bar</a><hr class="custom-hr" />
             <a id='option2' onClick={() => handleSelectedChart(2)}>Pie</a><hr class="custom-hr" />
-          </div>
+          </div> */}
         </div>
         <div className="crancy-progress-card card-contain-graph">
           <ReactApexChart options={pieOptions} series={series} type="donut" />
