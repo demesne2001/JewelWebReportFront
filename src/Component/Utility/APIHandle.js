@@ -36,7 +36,7 @@ export default async function post(inputJson, APINAME, defaultRes, methodType) {
                 }
                 else {
                  
-                    alert(E)
+                    // alert(E)
                     defaultRes['Error'] = E
                     return defaultRes
                     // throw defaultRes

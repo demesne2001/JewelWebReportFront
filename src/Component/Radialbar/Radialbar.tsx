@@ -7,7 +7,7 @@ import { Text } from '@visx/text';
 import letterFrequency, { LetterFrequency } from '@visx/mock-data/lib/mocks/letterFrequency';
 
 const data = letterFrequency;
-console.log(data)
+
 
 const getLetter = (d: LetterFrequency) => d.letter;
 const getLetterFrequency = (d: LetterFrequency) => Number(d.frequency) * 100;

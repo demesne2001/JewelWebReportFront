@@ -5074,6 +5074,7 @@ select,
 .crancy-progress-card.top-graph-card{
     display: flex;
     height: 180px;
+    /* height: fit-content; */
     justify-content: center;
 }
 @media (min-width: 1200px){

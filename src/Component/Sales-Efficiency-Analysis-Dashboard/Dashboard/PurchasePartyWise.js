@@ -40,7 +40,6 @@ export default function PurchasePartyWise() {
 
 	useEffect(()=>{
 		imagepoint()
-		console.log(imagearr)
 	},[])
 
 	const series = [{
