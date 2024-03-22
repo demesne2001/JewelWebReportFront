@@ -13,9 +13,9 @@ import './Component/Assets/css/bootstrap.min.css'
 import './Component/Assets/css/charts.min.css'
 import './Component/Assets/css/font-awesome-all.min.css'
 import './Component/Assets/css/reset.css'
-import './Component/Assets/css/style.css'
+// import './Component/Assets/css/style.css'
 
-// import './Component/Assets/css/style copy.css'
+import './Component/Assets/css/style copy.css'
 
 import './Component/Assets/css/Custom.css'
 

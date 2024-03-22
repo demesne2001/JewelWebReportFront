@@ -18,6 +18,8 @@ const API = {
     GetDesignCatalogue: Filter+'GetDesignCatalogue',
     GetSaleman:Filter+'GetSaleman',
     GetSalesParty : Filter+'GetSalesParty',
+
+    GetSalesEfficiencyCard : Card + 'GetSalesEfficiencyCard',
     
 }
 export default API

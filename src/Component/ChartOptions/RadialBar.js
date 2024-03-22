@@ -1,4 +1,4 @@
-export function radialBarOptions (labels){
+export function radialBarOptions (){
     const options = {
 		chart: {
 			height: 390,
@@ -30,7 +30,7 @@ export function radialBarOptions (labels){
 			},
 		},
 		colors: ['#b55dc4', '#d4d4d4', '#e86867', '#78c37b', '#ffd142'],
-        labels: labels,
+        labels:  ['Vimeo', 'Messenger', 'Facebook', 'LinkedIn'],
 		legend: {
 			show: true,
 			floating: true,

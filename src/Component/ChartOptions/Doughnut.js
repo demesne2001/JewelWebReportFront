@@ -1,15 +1,16 @@
-export function DoughnutOptions(labels){
+export function DoughnutOptions(){
 
     const options = {
         chart: {
           type: 'donut',
         },
         legend: {
-          show: true
+          show: true,
+          postition:'bottom'
         },
         colors:['#8458b0','#da3e00'],
 
-        labels: labels,
+        labels: ['Vimeo', 'Messenger', 'Facebook', 'LinkedIn'],
         
         plotOptions: {
           pie: {

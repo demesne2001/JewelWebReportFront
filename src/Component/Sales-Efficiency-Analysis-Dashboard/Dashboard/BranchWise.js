@@ -17,9 +17,10 @@ export default function BranchWise() {
 
 	const series = [76, 67, 61, 90]
 	const label = ['Vimeo', 'Messenger', 'Facebook', 'LinkedIn']
-	
-	const radialOption = radialBarOptions(label)
-	const Doughnut = DoughnutOptions(label)
+	const [radialOption, setradialOption] = useState()
+	// const radialOption = radialBarOptions()
+	const [Doughnut, setDoughnut] = useState()
+	// const Doughnut = DoughnutOptions()
 
 	// const [radialOption,setRadialOption] = useState(radialBarOptions(label))
 	// const [Doughnut,SetDoughnut] = useState(DoughnutOptions(label))
@@ -27,9 +28,11 @@ export default function BranchWise() {
 	// const radialOption = useRef(radialBarOptions(label))
 	// const Doughnut = useRef(DoughnutOptions(label))
 
-	// const[option,setOption] = useState()
+	const[option,setOption] = useState()
 	
 	const [branchWiseChart, setBranchWiseChart] = useState(1)
+
+	const [show,setShow] = useState(true)
 
 	useEffect(() => {
 		// if (branchWiseChart === 1) {
@@ -48,8 +51,25 @@ export default function BranchWise() {
 
 	}, [branchWiseChart])
 
+// let d ={}
+// let r = {}
+// 	useEffect(()=>{
+// 		let d = DoughnutOptions()
+// 		let r = radialBarOptions()
+// 		setDoughnut(d)
+// 		setradialOption(r)
+// 	},[radialOption])
+
+
+
 	function handleSelectedChart(num) {
-		setBranchWiseChart(num)		
+		setBranchWiseChart(num)
+		// if (num===1){	
+		// setShow(false)
+		// }
+		// else{
+		// 	setShow(true)
+		// }	
 	}
 
 	function returnSelectedChart() {
@@ -116,9 +136,11 @@ export default function BranchWise() {
 					{/* {()=>{return (returnSelectedChart())}} */}
 
 				{/* <returnSelectedChart/> */}
-				{returnSelectedChart()}
+				{returnSelectedChart}
 				{/* {branchWiseChart === 1?<ReactApexChart options={radialOption} series={series} type="radialBar" height={380} />:<ReactApexChart options={Doughnut} series={series} type="donut" height={380} /> } */}
 					
+					
+
 					{/* { 
 					
 						(branchWiseChart === 1) && (<ReactApexChart options={radialOption} series={series} type="radialBar" height={380} />)
@@ -137,6 +159,10 @@ export default function BranchWise() {
 							<ReactApexChart options={Doughnut} series={series} type="donut" height={380} />
 						}
 					 }} */}
+
+					 {/* {
+						(show===true) ? <ReactApexChart options={Doughnut} series={series} type="donut" height={380}/> : <ReactApexChart options={radialOption} series={series} type="radialBar" height={380} />
+					 } */}
 
 				</div>
 

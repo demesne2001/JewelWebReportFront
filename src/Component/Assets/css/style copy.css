@@ -2387,8 +2387,9 @@ button.crancy-item__btn {
     background: #fff; 
     align-items: center;
     padding: 10px;
-    justify-content: space-between;
-    border-radius: 8px
+    justify-content: center;
+    border-radius: 8px;
+    height: 420px;
 }
 
 .crancy-progress-card__title {
@@ -5074,6 +5075,7 @@ select,
 .crancy-progress-card.top-graph-card{
     display: flex;
     height: 180px;
+    /* height: fit-content; */
     justify-content: center;
 }
 @media (min-width: 1200px){
@@ -5084,10 +5086,9 @@ select,
 }
 .crancy-progress-card.card-contain-graph{
     border-radius: 0px 0px 10px 10px;
-    padding-top: 22px;
-    max-height: -moz-fit-content;
+    padding-top: 22px;;
+    max-height: 500px; 
     text-align: center;
-    height: 380px;
 }
 .sidemenu{
     font-size: 22px;
@@ -5332,6 +5333,7 @@ label {
     border-radius: 8px;
     background: white;
     margin: 10px;
+    height: 500px;
 }
 
 html[data-nav="top"] .geex-content__header .geex-content__header__customizer {
@@ -5881,6 +5883,7 @@ html[data-nav="top"] .geex-content__header .geex-content__header__customizer {
 
 .graph-card{
     margin: 15px 0px 15px 0px;
+    
 }
 .filter-header-dropdown{
     color: #9fa6b5;
