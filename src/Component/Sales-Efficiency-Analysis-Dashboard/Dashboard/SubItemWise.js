@@ -1,5 +1,9 @@
 import React from 'react'
 
+import API from '../../Utility/API';
+import post from '../../Utility/APIHandle'
+import { useEffect,useState } from 'react';
+
 
 import ReactApexChart from 'react-apexcharts';
 import RoundedBar from '../../CustomCharts/RoundedBar';
@@ -27,6 +31,54 @@ export default function SubItemWise() {
 
   function handleSelectedChart(num) {
     // setBranchWiseChart(num)
+  }
+
+  const [postData, setPostData] = useState({
+    "strBranch": "",
+    "strState": "",
+    "strCity": "",
+    "strItem": "",
+    "strSubItem": "",
+    "strItemGroup": "",
+    "strItemSubitem": "",
+    "strPurchaseParty": "",
+    "strSalesParty": "",
+    "strSaleman": "",
+    "strProduct": "",
+    "strDesignCatalogue": "",
+    "strSaleAging": "",
+    "strModeofSale": "",
+    "strTeamModeofSale": "",
+    "FromDate": "",
+    "ToDate": "",
+    "strMetalType": "",
+    "strDayBook": "",
+    "PageNo": 0,
+    "PageSize": 0,
+    "Search": ""
+  })
+
+
+  useEffect(() => {
+    getdata()
+  }, [])
+
+  function getdata() {
+
+    let temp1 = []
+
+    post(postData, API.GetSubItemWise, 'post')
+      .then((res) => {
+
+        for (let index = 0; index < res.data.lstResult.length; index++) {
+
+          temp1.push({
+
+          })
+
+        }
+
+      })
   }
 
   return (

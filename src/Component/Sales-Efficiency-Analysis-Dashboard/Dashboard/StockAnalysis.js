@@ -1,9 +1,52 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+
+import API from '../../Utility/API'
+import post from '../../Utility/APIHandle'
 
 import StockAnalysis2 from '../../Assets/img/svgs bold/stock analysis 2.svg'
 import Vector2 from '../../Assets/img/svgs bold/Vector (2).svg'
 
 export default function StockAnalysis() {
+
+	const [postData, setPostData] = useState({
+        "strBranch": "",
+        "strState": "",
+        "strCity": "",
+        "strItem": "",
+        "strSubItem": "",
+        "strItemGroup": "",
+        "strItemSubitem": "",
+        "strPurchaseParty": "",
+        "strSalesParty": "",
+        "strSaleman": "",
+        "strProduct": "",
+        "strDesignCatalogue": "",
+        "strSaleAging": "",
+        "strModeofSale": "",
+        "strTeamModeofSale": "",
+        "FromDate": "",
+        "ToDate": "",
+        "strMetalType": "",
+        "strDayBook": "",
+        "PageNo": 0,
+        "PageSize": 0,
+        "Search": ""
+    })
+
+
+    useEffect(()=>{
+        getdata()
+    },[])
+    
+
+    function getdata() {
+
+        post(postData,API.GetStockAnalysisCard,'post')
+        .then((res)=>{
+            
+        })
+    }
+
   return (
     <div className="col-xl-2 col-lg-6 col-md-6 col-12">
 								<div className="graph-card">

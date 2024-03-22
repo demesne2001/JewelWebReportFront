@@ -4,6 +4,10 @@ import ReactApexChart from 'react-apexcharts';
 import { stackedBarOptions } from '../../ChartOptions/StackedBar';
 import { GroupBarOptions } from '../../ChartOptions/GroupBar';
 import BlackDots from '../../Assets/image/Dots.png'
+import API from '../../Utility/API';
+import post from '../../Utility/APIHandle'
+import { useEffect,useState } from 'react';
+
 
 export default function MonthWise() {
 
@@ -19,6 +23,54 @@ export default function MonthWise() {
 	const labels = ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct']
 
 	const options = GroupBarOptions(labels)
+
+	const [postData, setPostData] = useState({
+        "strBranch": "",
+        "strState": "",
+        "strCity": "",
+        "strItem": "",
+        "strSubItem": "",
+        "strItemGroup": "",
+        "strItemSubitem": "",
+        "strPurchaseParty": "",
+        "strSalesParty": "",
+        "strSaleman": "",
+        "strProduct": "",
+        "strDesignCatalogue": "",
+        "strSaleAging": "",
+        "strModeofSale": "",
+        "strTeamModeofSale": "",
+        "FromDate": "",
+        "ToDate": "",
+        "strMetalType": "",
+        "strDayBook": "",
+        "PageNo": 0,
+        "PageSize": 0,
+        "Search": ""
+    })
+
+
+    useEffect(()=>{
+        getdata()
+    },[])
+
+	function getdata() {
+
+		let temp1 = []
+
+        post(postData,API.GetMonthWise,'post')
+        .then((res)=>{
+
+			for (let index = 0; index < res.data.lstResult.length; index++) {
+
+				temp1.push({
+					
+				})
+
+			}
+			
+        })
+    }
 
 	function handledropdownMenu() {
 		document.getElementById("myDropdownMonth").style.display === "block" ? document.getElementById("myDropdownMonth").style.display = "none" : document.getElementById("myDropdownMonth").style.display = "block";

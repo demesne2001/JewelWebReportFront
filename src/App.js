@@ -21,6 +21,7 @@ import './Component/Assets/css/Custom.css'
 
 
 
+
 // import bootstrapSelectMin from './Component/Assets/js/bootstrap-select.min';
 // import bootstrapMin from './Component/Assets/js/bootstrap.min'
 // import jqueryMigrate from './Component/Assets/js/jquery-migrate';
@@ -31,16 +32,17 @@ import './Component/Assets/css/Custom.css'
 
 function App() {
   return (
-    <Router> 
-      <div>
-          <Navbar/>
+    
+      <Router>
+        <div>
+          <Navbar />
 
           <Routes>
-            <Route exact path='/' element={<Dashboard/>}></Route>
-            </Routes>
+            <Route exact path='/' element={<Dashboard />}></Route>
+          </Routes>
 
-            
-            {/* <script type="text/javascript" src={bootstrapSelectMin}></script>
+
+          {/* <script type="text/javascript" src={bootstrapSelectMin}></script>
             <script type="text/javascript" src={bootstrapMin}></script> 
 
             <script type="text/javascript" src={jqueryMigrate}></script>
@@ -48,9 +50,9 @@ function App() {
             <script type="text/javascript" src={main}></script>
             <script type="text/javascript" src={popperMin}></script> */}
 
-        
-      </div>
-    </Router>
+
+        </div>
+      </Router>
 
   );
 }

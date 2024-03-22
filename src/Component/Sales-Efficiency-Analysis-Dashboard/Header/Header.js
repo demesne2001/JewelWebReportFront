@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useContext } from 'react'
 import axios from 'axios';
 
 import Modal from 'react-bootstrap/Modal';
@@ -7,10 +7,16 @@ import API from '../../Utility/API';
 
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
+import contex from '../../contex/Contex';
+
 
 // import Commonmodel from '../../CommonModel/CommanModal';
 
 export default function Header() {
+	
+
+	const contexData = useContext(contex)
+	
 
 	const animatedComponents = makeAnimated();
 
@@ -578,7 +584,10 @@ export default function Header() {
 
 	}
 
-
+	function handleApplyFilter(){
+		contexData.SetState(postData)
+		handleOnClose()
+	}
 
 
 	return (
@@ -1105,7 +1114,7 @@ export default function Header() {
 					<Modal.Footer class="modal-footer">
 
 						<button type="button" class="filter-footer-button" data-mdb-ripple-init onClick={handleOnClose}> Close </button>
-						<button type="button" class="filter-footer-button" data-mdb-ripple-init>Apply</button>
+						<button type="button" class="filter-footer-button" data-mdb-ripple-init onClick={handleApplyFilter}>Apply</button>
 						<div class="form-check checkbox-filter">
 							<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked />
 							<label class="form-check-label checkbox-filter-label text-muted" for="flexCheckChecked">(% Set

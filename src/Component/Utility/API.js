@@ -1,8 +1,10 @@
+
 const Baseurl="http://192.168.1.208:5000/"
+
 const Filter = Baseurl + 'Filter/'
 const Chart = Baseurl + 'Chart/'
 const Card = Baseurl + 'Card/'
-const Common = Baseurl + 'Comman/'
+
 
 const API = {
 
@@ -20,7 +22,31 @@ const API = {
     GetSalesParty : Filter+'GetSalesParty',
 
     GetSalesEfficiencyCard : Card + 'GetSalesEfficiencyCard',
-    
+    GetReturnTrendCard : Card + 'GetReturnTrendCard',
+    GetSalesWeightCard : Card + 'GetSalesWeightCard',
+    GetCollectionCard : Card + 'GetCollectionCard',
+    GetStockAnalysisCard : Card + 'GetStockAnalysisCard',
+
+    GetBranchWise : Chart + 'GetBranchWise',
+    GetStateWise : Chart + 'GetStateWise',
+    GetCityWise : Chart + 'GetCityWise',
+    GetRegionWise : Chart + 'GetRegionWise',
+    GetItemWise : Chart + 'GetItemWise',
+    GetSubItemWise : Chart + 'GetSubItemWise',
+    GetItemGroupWise : Chart + 'GetItemGroupWise',
+    GetItemWithSubItemWise : Chart + 'GetItemWithSubItemWise',
+    GetPurchasePartywise : Chart + 'GetPurchasePartywise',
+    GetSalesPartyWise : Chart + 'GetSalesPartyWise',
+    GetProductWise : Chart + 'GetProductWise',
+    GetDesignCatalogueWise : Chart + 'GetDesignCatalogueWise',
+    GetMonthWise : Chart + 'GetMonthWise',
+    GetYearWise : Chart + 'GetYearWise',
+    GetSalesAgingWise : Chart + 'GetSalesAgingWise',
+    GetModeOfSalesWise : Chart + 'GetModeOfSalesWise',
+    GetTeamAndModeOFSalesWise : Chart + 'GetTeamAndModeOFSalesWise',
+    GetSalesmanWise : Chart + 'GetSalesmanWise'
+
+
 }
 export default API
 

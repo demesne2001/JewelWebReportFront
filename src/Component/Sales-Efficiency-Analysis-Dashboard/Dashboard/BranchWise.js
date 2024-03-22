@@ -1,12 +1,15 @@
-import React, { useEffect, useState,useRef } from 'react'
-import ReactApexChart from 'react-apexcharts';
+import React, { useEffect, useState,useRef, useContext } from 'react'
+import API from '../../Utility/API';
+import post from '../../Utility/APIHandle'
 
+import ReactApexChart from 'react-apexcharts';
 
 import BlackDots from '../../Assets/image/Dots.png'
 
 import { radialBarOptions } from '../../ChartOptions/RadialBar';
 import { DoughnutOptions } from '../../ChartOptions/Doughnut';
 import { render } from '@testing-library/react';
+import contex from '../../contex/Contex';
 
 
 
@@ -14,13 +17,14 @@ import { render } from '@testing-library/react';
 export default function BranchWise() {
 
 
+	const contexData = useContext(contex) 
+	
 
 	const series = [76, 67, 61, 90]
 	const label = ['Vimeo', 'Messenger', 'Facebook', 'LinkedIn']
-	const [radialOption, setradialOption] = useState()
-	// const radialOption = radialBarOptions()
-	const [Doughnut, setDoughnut] = useState()
-	// const Doughnut = DoughnutOptions()
+
+	const radialOption = radialBarOptions(label)
+	const Doughnut = DoughnutOptions(label)
 
 	// const [radialOption,setRadialOption] = useState(radialBarOptions(label))
 	// const [Doughnut,SetDoughnut] = useState(DoughnutOptions(label))
@@ -30,9 +34,35 @@ export default function BranchWise() {
 
 	const[option,setOption] = useState()
 	
-	const [branchWiseChart, setBranchWiseChart] = useState(1)
+	const [branchWiseChart, setBranchWiseChart] = useState(2)
 
 	const [show,setShow] = useState(true)
+
+	const [postData, setPostData] = useState({
+        "strBranch": "",
+        "strState": "",
+        "strCity": "",
+        "strItem": "",
+        "strSubItem": "",
+        "strItemGroup": "",
+        "strItemSubitem": "",
+        "strPurchaseParty": "",
+        "strSalesParty": "",
+        "strSaleman": "",
+        "strProduct": "",
+        "strDesignCatalogue": "",
+        "strSaleAging": "",
+        "strModeofSale": "",
+        "strTeamModeofSale": "",
+        "FromDate": "",
+        "ToDate": "",
+        "strMetalType": "",
+        "strDayBook": "",
+        "PageNo": 0,
+        "PageSize": 0,
+        "Search": ""
+    })
+
 
 	useEffect(() => {
 		// if (branchWiseChart === 1) {
@@ -51,14 +81,35 @@ export default function BranchWise() {
 
 	}, [branchWiseChart])
 
-// let d ={}
-// let r = {}
-// 	useEffect(()=>{
-// 		let d = DoughnutOptions()
-// 		let r = radialBarOptions()
-// 		setDoughnut(d)
-// 		setradialOption(r)
-// 	},[radialOption])
+	useEffect(()=>{
+
+		setPostData(contexData.state)
+
+	},[contexData.state])
+
+	useEffect(()=>{
+		getdata()
+	},[postData])
+
+	function getdata() {
+		console.log('postData in branch' , postData)
+		let temp1 = []
+
+        post(postData,API.GetBranchWise,'post')
+        .then((res)=>{
+
+            // for (let index = 0; index < res.data.lstResult.length; index++) {
+
+			// 	temp1.push({
+					  
+			// 	})
+
+			// }
+			
+        })
+    }
+
+
 
 
 
@@ -75,13 +126,13 @@ export default function BranchWise() {
 	function returnSelectedChart() {
 		if (branchWiseChart === 1) {
 			
-			// return(<div> <p>RadialBar</p> </div>)
+			
 			return (<div><ReactApexChart options={radialOption} series={series} type="radialBar" height={380} /></div>)
 			
 		}
 		else if (branchWiseChart === 2) { 		
 			
-			// return(<div> <p>Pie </p></div>)
+			
 			return (<div><ReactApexChart options={Doughnut} series={series} type="donut" height={380} /></div>)
 		}
 	}
@@ -136,7 +187,7 @@ export default function BranchWise() {
 					{/* {()=>{return (returnSelectedChart())}} */}
 
 				{/* <returnSelectedChart/> */}
-				{returnSelectedChart}
+				{returnSelectedChart()}
 				{/* {branchWiseChart === 1?<ReactApexChart options={radialOption} series={series} type="radialBar" height={380} />:<ReactApexChart options={Doughnut} series={series} type="donut" height={380} /> } */}
 					
 					

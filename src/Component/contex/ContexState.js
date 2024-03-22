@@ -1,8 +1,7 @@
 import { useState } from "react"
-
 import contex from "./Contex"
 
-const contexState = (props) => {
+const ContexState = (props) => {
 
     const [state,SetState] = useState({
         "strBranch": "",
@@ -31,7 +30,7 @@ const contexState = (props) => {
 
     return (
 
-       <contex.Provider value={{state,SetState}}>
+       <contex.Provider value={{state:state, SetState:SetState}}>
 
         {props.children}
 
@@ -41,4 +40,4 @@ const contexState = (props) => {
 
 }
 
-export default contexState
+export default ContexState

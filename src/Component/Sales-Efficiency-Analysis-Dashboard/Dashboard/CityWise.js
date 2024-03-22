@@ -1,5 +1,8 @@
 import React from 'react'
 import ReactApexChart from 'react-apexcharts';
+import API from '../../Utility/API';
+import { useEffect,useState } from 'react';
+import post from '../../Utility/APIHandle'
 
 import { stackedBarOptions } from '../../ChartOptions/StackedBar';
 import BlackDots from '../../Assets/image/Dots.png'
@@ -17,9 +20,51 @@ export default function CityWise() {
 		data: [13, 23, 20, 8, 13, 27]
 	}]
 
-
 	const stackedBarOption = stackedBarOptions(label)
 
+	const [postData, setPostData] = useState({
+        "strBranch": "",
+        "strState": "",
+        "strCity": "",
+        "strItem": "",
+        "strSubItem": "",
+        "strItemGroup": "",
+        "strItemSubitem": "",
+        "strPurchaseParty": "",
+        "strSalesParty": "",
+        "strSaleman": "",
+        "strProduct": "",
+        "strDesignCatalogue": "",
+        "strSaleAging": "",
+        "strModeofSale": "",
+        "strTeamModeofSale": "",
+        "FromDate": "",
+        "ToDate": "",
+        "strMetalType": "",
+        "strDayBook": "",
+        "PageNo": 0,
+        "PageSize": 0,
+        "Search": ""
+    })
+
+
+    useEffect(()=>{
+        getdata()
+    },[])
+    
+
+    function getdata() {
+
+		let temp1 = []
+
+        post(postData,API.GetCityWise,'post')
+        .then((res)=>{
+
+            temp1.push({
+
+			})
+        })
+    }
 	
 	function handledropdownMenu() {
 		document.getElementById("myDropdownCity").style.display === "block" ? document.getElementById("myDropdownCity").style.display = "none" : document.getElementById("myDropdownCity").style.display = "block";

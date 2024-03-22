@@ -3,6 +3,9 @@ import React from 'react'
 import ReactApexChart from 'react-apexcharts';
 import { StackedBar2Options } from '../../ChartOptions/StackedBar2';
 import BlackDots from '../../Assets/image/Dots.png'
+import API from '../../Utility/API';
+import post from '../../Utility/APIHandle'
+import { useEffect,useState } from 'react';
 
 export default function TeamModeofSalesWise() {
 	const series = [{
@@ -23,6 +26,54 @@ export default function TeamModeofSalesWise() {
 	'01/05/2011 GMT', '01/06/2011 GMT'
   ]  
 	const option = StackedBar2Options(label)
+
+	const [postData, setPostData] = useState({
+        "strBranch": "",
+        "strState": "",
+        "strCity": "",
+        "strItem": "",
+        "strSubItem": "",
+        "strItemGroup": "",
+        "strItemSubitem": "",
+        "strPurchaseParty": "",
+        "strSalesParty": "",
+        "strSaleman": "",
+        "strProduct": "",
+        "strDesignCatalogue": "",
+        "strSaleAging": "",
+        "strModeofSale": "",
+        "strTeamModeofSale": "",
+        "FromDate": "",
+        "ToDate": "",
+        "strMetalType": "",
+        "strDayBook": "",
+        "PageNo": 0,
+        "PageSize": 0,
+        "Search": ""
+    })
+
+
+    useEffect(()=>{
+        getdata()
+    },[])
+
+	function getdata() {
+
+		let temp1 = []
+
+        post(postData,API.GetModeOfSalesWise,'post')
+        .then((res)=>{
+
+			for (let index = 0; index < res.data.lstResult.length; index++) {
+
+				temp1.push({
+					
+				})
+
+			}
+			
+        })
+    }
 
 	function handledropdownMenu() {
 		document.getElementById("myDropdownTeammode").style.display === "block" ? document.getElementById("myDropdownTeammode").style.display = "none" : document.getElementById("myDropdownTeammode").style.display = "block";

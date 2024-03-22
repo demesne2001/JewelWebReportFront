@@ -24,6 +24,8 @@ import SalesAgingWise from './SalesAgingWise'
 import ModeofSalesWise from './ModeofSalesWise'
 import TeamModeofSalesWise from './TeamModeofSalesWise'
 
+import ContexState from '../../contex/ContexState'
+
 // import bootstrapSelectMin from '../../Assets/js/bootstrap-select.min';
 // import bootstrapMin from '../../Assets/js/bootstrap.min'
 // import jqueryMigrate from '../../Assets/js/jquery-migrate';
@@ -35,6 +37,7 @@ import TeamModeofSalesWise from './TeamModeofSalesWise'
 export default function Dashboard() {
     return (
         <div>
+            <ContexState>
             <Header />
 
             <section className="crancy-adashboard crancy-show">
@@ -83,6 +86,8 @@ export default function Dashboard() {
             <script type="text/javascript" src={jquaryMin}></script>
             <script type="text/javascript" src={main}></script>
             <script type="text/javascript" src={popperMin}></script> */}
+    
+        </ContexState>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-export function radialBarOptions (){
+export function radialBarOptions (labels){
     const options = {
 		chart: {
 			height: 390,

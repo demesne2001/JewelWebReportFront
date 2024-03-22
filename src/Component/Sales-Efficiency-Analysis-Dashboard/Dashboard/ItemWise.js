@@ -1,10 +1,13 @@
 import React from 'react'
+import { useEffect,useState } from 'react';
 
 import HbarFilled from '../../CustomCharts/HbarFilled'
 import Cylinder from '../../CustomCharts/Cylinder3d.js/Cylinder'
 import CylinderFilled from '../../CustomCharts/CylinderFilled/CylinderFilled'
 
 import BlackDots from '../../Assets/image/Dots.png'
+import API from '../../Utility/API'
+import post from '../../Utility/APIHandle'
 
 export default function ItemWise() {
 
@@ -23,6 +26,54 @@ export default function ItemWise() {
 		// setBranchWiseChart(num)
 	}
 	
+	const [postData, setPostData] = useState({
+        "strBranch": "",
+        "strState": "",
+        "strCity": "",
+        "strItem": "",
+        "strSubItem": "",
+        "strItemGroup": "",
+        "strItemSubitem": "",
+        "strPurchaseParty": "",
+        "strSalesParty": "",
+        "strSaleman": "",
+        "strProduct": "",
+        "strDesignCatalogue": "",
+        "strSaleAging": "",
+        "strModeofSale": "",
+        "strTeamModeofSale": "",
+        "FromDate": "",
+        "ToDate": "",
+        "strMetalType": "",
+        "strDayBook": "",
+        "PageNo": 0,
+        "PageSize": 0,
+        "Search": ""
+    })
+
+
+    useEffect(()=>{
+        getdata()
+    },[])
+
+	function getdata() {
+
+		let temp1 = []
+
+        post(postData,API.GetItemWise,'post')
+        .then((res)=>{
+
+			for (let index = 0; index < res.data.lstResult.length; index++) {
+
+				temp1.push({
+					
+				})
+
+			}
+			
+        })
+    }
+
 	return (
 
 		<div className="col-lg-4 col-md-6 col-12">

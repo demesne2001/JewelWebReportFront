@@ -3,6 +3,9 @@ import React from 'react'
 import ReactApexChart from 'react-apexcharts';
 import { barMarkerOptions } from '../../ChartOptions/BarMarker';
 import BlackDots from '../../Assets/image/Dots.png'
+import API from '../../Utility/API';
+import post from '../../Utility/APIHandle'
+import { useEffect,useState } from 'react';
 
 export default function YearWise() {
 	
@@ -115,6 +118,54 @@ export default function YearWise() {
 	  ]
 	  const option = barMarkerOptions()
 
+	  const [postData, setPostData] = useState({
+        "strBranch": "",
+        "strState": "",
+        "strCity": "",
+        "strItem": "",
+        "strSubItem": "",
+        "strItemGroup": "",
+        "strItemSubitem": "",
+        "strPurchaseParty": "",
+        "strSalesParty": "",
+        "strSaleman": "",
+        "strProduct": "",
+        "strDesignCatalogue": "",
+        "strSaleAging": "",
+        "strModeofSale": "",
+        "strTeamModeofSale": "",
+        "FromDate": "",
+        "ToDate": "",
+        "strMetalType": "",
+        "strDayBook": "",
+        "PageNo": 0,
+        "PageSize": 0,
+        "Search": ""
+    })
+
+
+    useEffect(()=>{
+        getdata()
+    },[])
+
+	function getdata() {
+
+		let temp1 = []
+
+        post(postData,API.GetYearWise,'post')
+        .then((res)=>{
+
+			for (let index = 0; index < res.data.lstResult.length; index++) {
+
+				temp1.push({
+					
+				})
+
+			}
+			
+        })
+    }
+
 	  function handledropdownMenu() {
 		document.getElementById("myDropdownYear").style.display === "block" ? document.getElementById("myDropdownYear").style.display = "none" : document.getElementById("myDropdownYear").style.display = "block";
 	  }
@@ -123,6 +174,8 @@ export default function YearWise() {
 	  function handleSelectedChart(num) {
 		// setBranchWiseChart(num)
 	  }
+
+
 		
   return (
     <div className="col-lg-4 col-md-6 col-12">

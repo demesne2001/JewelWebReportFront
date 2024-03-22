@@ -1,4 +1,7 @@
 import React from 'react'
+import API from '../../Utility/API';
+import { useEffect,useState } from 'react';
+import post from '../../Utility/APIHandle'
 
 import ReactApexChart from 'react-apexcharts';
 import { hBarOptions } from '../../ChartOptions/Hbar';
@@ -13,6 +16,54 @@ export default function ItemWithSubItemWise() {
 	const labels = ['South Korea', 'Canada', 'United Kingdom', 'Netherlands','United States']
 
 	const option = hBarOptions(labels)
+
+	const [postData, setPostData] = useState({
+        "strBranch": "",
+        "strState": "",
+        "strCity": "",
+        "strItem": "",
+        "strSubItem": "",
+        "strItemGroup": "",
+        "strItemSubitem": "",
+        "strPurchaseParty": "",
+        "strSalesParty": "",
+        "strSaleman": "",
+        "strProduct": "",
+        "strDesignCatalogue": "",
+        "strSaleAging": "",
+        "strModeofSale": "",
+        "strTeamModeofSale": "",
+        "FromDate": "",
+        "ToDate": "",
+        "strMetalType": "",
+        "strDayBook": "",
+        "PageNo": 0,
+        "PageSize": 0,
+        "Search": ""
+    })
+
+
+    useEffect(()=>{
+        getdata()
+    },[])
+
+	function getdata() {
+
+		let temp1 = []
+
+        post(postData,API.GetItemWithSubItemWise,'post')
+        .then((res)=>{
+
+			for (let index = 0; index < res.data.lstResult.length; index++) {
+
+				temp1.push({
+					
+				})
+
+			}
+			
+        })
+    }
 
 	function handledropdownMenu() {
 		document.getElementById("myDropdownItemwithsubitem").style.display === "block" ? document.getElementById("myDropdownItemwithsubitem").style.display = "none" : document.getElementById("myDropdownItemwithsubitem").style.display = "block";

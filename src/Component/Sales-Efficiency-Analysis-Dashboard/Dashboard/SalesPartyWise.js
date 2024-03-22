@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import Gradient from "javascript-color-gradient";
 import ReactApexChart from 'react-apexcharts';
 import BlackDots from '../../Assets/image/Dots.png'
+import post from '../../Utility/APIHandle'
+import API from '../../Utility/API';
+
 
 export default function SalesPartyWise() {
 
@@ -18,19 +21,56 @@ export default function SalesPartyWise() {
 		{ product: 'Gold Phone Case', thisYearProfit: 12533, color: "" }
 	]);
 
-	const gradientArray = new Gradient()
+	const gradientArray = new Gradient().setColorGradient("#01555b", "#98c8cb").getColors()
 
-	// .setColorGradient("#00897b", "#cdffed")
-	// .getColors()
-	
+	const [postData, setPostData] = useState({
+        "strBranch": "",
+        "strState": "",
+        "strCity": "",
+        "strItem": "",
+        "strSubItem": "",
+        "strItemGroup": "",
+        "strItemSubitem": "",
+        "strPurchaseParty": "",
+        "strSalesParty": "",
+        "strSaleman": "",
+        "strProduct": "",
+        "strDesignCatalogue": "",
+        "strSaleAging": "",
+        "strModeofSale": "",
+        "strTeamModeofSale": "",
+        "FromDate": "",
+        "ToDate": "",
+        "strMetalType": "",
+        "strDayBook": "",
+        "PageNo": 0,
+        "PageSize": 0,
+        "Search": ""
+    })
 
-		.setColorGradient("#01555b", "#98c8cb")
-		.getColors()
-
-
-	useEffect(() => {
+    useEffect(()=>{
+        getdata()
 		gradientdata()
-	}, [])
+    },[])
+
+
+	function getdata() {
+
+		let temp1 = []
+
+        post(postData,API.GetSalesPartyWise,'post')
+        .then((res)=>{
+
+			for (let index = 0; index < res.data.lstResult.length; index++) {
+
+				temp1.push({
+					
+				})
+
+			}
+			
+        })
+    }
 
 
 	function gradientdata() {

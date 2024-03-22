@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
+import API from '../../Utility/API'
+import post from '../../Utility/APIHandle'
+
 import piegraph1 from '../../Assets/image/piegraph1.png'
 
 import salesEff1 from '../../Assets/img/svgs bold/sales eff 1.svg'
 import salesEff2 from '../../Assets/img/svgs bold/sales eff 2.svg'
-
-import API from '../../Utility/API'
-import post from '../../Utility/APIHandle'
 
 export default function SalesEfficiency() {
 
@@ -35,15 +35,17 @@ export default function SalesEfficiency() {
         "Search": ""
     })
 
-    useEffect(()=>{
 
+    useEffect(()=>{
+        getdata()
     },[])
+    
 
     function getdata() {
 
         post(postData,API.GetSalesEfficiencyCard,'post')
         .then((res)=>{
-
+            
         })
     }
 

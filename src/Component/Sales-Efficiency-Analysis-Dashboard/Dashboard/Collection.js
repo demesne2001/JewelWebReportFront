@@ -1,9 +1,52 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+
+import API from '../../Utility/API'
+import post from '../../Utility/APIHandle'
 
 import collenction1 from '../../Assets/img/svgs bold/collection1.svg'
 import collenction2 from '../../Assets/img/svgs bold/collection 2.svg'
 
 export default function Collection() {
+
+	const [postData, setPostData] = useState({
+        "strBranch": "",
+        "strState": "",
+        "strCity": "",
+        "strItem": "",
+        "strSubItem": "",
+        "strItemGroup": "",
+        "strItemSubitem": "",
+        "strPurchaseParty": "",
+        "strSalesParty": "",
+        "strSaleman": "",
+        "strProduct": "",
+        "strDesignCatalogue": "",
+        "strSaleAging": "",
+        "strModeofSale": "",
+        "strTeamModeofSale": "",
+        "FromDate": "",
+        "ToDate": "",
+        "strMetalType": "",
+        "strDayBook": "",
+        "PageNo": 0,
+        "PageSize": 0,
+        "Search": ""
+    })
+
+
+    useEffect(()=>{
+        getdata()
+    },[])
+    
+
+    function getdata() {
+
+        post(postData,API.GetCollectionCard,'post')
+        .then((res)=>{
+            
+        })
+    }
+
   return (
     
       <div className="col-xl-2 col-lg-6 col-md-6 col-12">

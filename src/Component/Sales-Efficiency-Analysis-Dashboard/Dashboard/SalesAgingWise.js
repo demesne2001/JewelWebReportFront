@@ -3,6 +3,9 @@ import React from 'react'
 import ReactApexChart from 'react-apexcharts';
 import { lineOption } from '../../ChartOptions/Line';
 import BlackDots from '../../Assets/image/Dots.png'
+import post from '../../Utility/APIHandle'
+import { useEffect,useState } from 'react';
+import API from '../../Utility/API';
 
 export default function SalesAgingWise() {
 	const series = [
@@ -15,6 +18,54 @@ export default function SalesAgingWise() {
 	const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']
 
 	const options = lineOption(labels)
+
+	const [postData, setPostData] = useState({
+        "strBranch": "",
+        "strState": "",
+        "strCity": "",
+        "strItem": "",
+        "strSubItem": "",
+        "strItemGroup": "",
+        "strItemSubitem": "",
+        "strPurchaseParty": "",
+        "strSalesParty": "",
+        "strSaleman": "",
+        "strProduct": "",
+        "strDesignCatalogue": "",
+        "strSaleAging": "",
+        "strModeofSale": "",
+        "strTeamModeofSale": "",
+        "FromDate": "",
+        "ToDate": "",
+        "strMetalType": "",
+        "strDayBook": "",
+        "PageNo": 0,
+        "PageSize": 0,
+        "Search": ""
+    })
+
+
+    useEffect(()=>{
+        getdata()
+    },[])
+
+	function getdata() {
+
+		let temp1 = []
+
+        post(postData,API.GetSalesAgingWise,'post')
+        .then((res)=>{
+
+			for (let index = 0; index < res.data.lstResult.length; index++) {
+
+				temp1.push({
+					
+				})
+
+			}
+
+        })
+    }
 
 	function handledropdownMenu() {
 		document.getElementById("myDropdownSalesaging").style.display === "block" ? document.getElementById("myDropdownSalesaging").style.display = "none" : document.getElementById("myDropdownSalesaging").style.display = "block";

@@ -1,4 +1,8 @@
 import React from 'react'
+import API from '../../Utility/API';
+import { useEffect,useState } from 'react';
+import post from '../../Utility/APIHandle'
+
 
 import ReactApexChart from 'react-apexcharts';
 import { pieOptions } from '../../ChartOptions/Pie';
@@ -10,6 +14,54 @@ export default function ItemGroupWise() {
 
 	const labels = ['ItemGroup A', 'ItemGroup B', 'ItemGroup C', 'ItemGroup D', 'ItemGroup E']
 	const options = pieOptions(labels)
+
+	const [postData, setPostData] = useState({
+        "strBranch": "",
+        "strState": "",
+        "strCity": "",
+        "strItem": "",
+        "strSubItem": "",
+        "strItemGroup": "",
+        "strItemSubitem": "",
+        "strPurchaseParty": "",
+        "strSalesParty": "",
+        "strSaleman": "",
+        "strProduct": "",
+        "strDesignCatalogue": "",
+        "strSaleAging": "",
+        "strModeofSale": "",
+        "strTeamModeofSale": "",
+        "FromDate": "",
+        "ToDate": "",
+        "strMetalType": "",
+        "strDayBook": "",
+        "PageNo": 0,
+        "PageSize": 0,
+        "Search": ""
+    })
+
+
+    useEffect(()=>{
+        getdata()
+    },[])
+
+	function getdata() {
+
+		let temp1 = []
+
+        post(postData,API.GetItemGroupWise,'post')
+        .then((res)=>{
+
+			for (let index = 0; index < res.data.lstResult.length; index++) {
+
+				temp1.push({
+					
+				})
+
+			}
+			
+        })
+    }
     
 	function handledropdownMenu() {
 		document.getElementById("myDropdownItemgroup").style.display === "block" ? document.getElementById("myDropdownItemgroup").style.display = "none" : document.getElementById("myDropdownItemgroup").style.display = "block";

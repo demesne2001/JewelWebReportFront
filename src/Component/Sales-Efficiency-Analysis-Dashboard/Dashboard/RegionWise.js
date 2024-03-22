@@ -3,9 +3,12 @@ import React from 'react'
 import ReactApexChart from 'react-apexcharts';
 import { loliPopBaroptions } from '../../ChartOptions/BarLolipop';
 import BlackDots from '../../Assets/image/Dots.png'
+import API from '../../Utility/API';
+import post from '../../Utility/APIHandle'
+import { useEffect,useState } from 'react';
 
 
-export default function regionWise() {
+export default function RegionWise() {
 	const series = [{
 		name: 'Inflation',
 		data: [2, 3, 4, 10, 4, 3, 3, 2, 1, 8, 5, 2]
@@ -14,6 +17,54 @@ export default function regionWise() {
 	const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
 	const loliPopOptions = loliPopBaroptions(labels)
+
+	const [postData, setPostData] = useState({
+        "strBranch": "",
+        "strState": "",
+        "strCity": "",
+        "strItem": "",
+        "strSubItem": "",
+        "strItemGroup": "",
+        "strItemSubitem": "",
+        "strPurchaseParty": "",
+        "strSalesParty": "",
+        "strSaleman": "",
+        "strProduct": "",
+        "strDesignCatalogue": "",
+        "strSaleAging": "",
+        "strModeofSale": "",
+        "strTeamModeofSale": "",
+        "FromDate": "",
+        "ToDate": "",
+        "strMetalType": "",
+        "strDayBook": "",
+        "PageNo": 0,
+        "PageSize": 0,
+        "Search": ""
+    })
+
+
+    useEffect(()=>{
+        getdata()
+    },[])
+
+	function getdata() {
+
+		let temp1 = []
+
+        post(postData,API.GetRegionWise,'post')
+        .then((res)=>{
+
+			for (let index = 0; index < res.data.lstResult.length; index++) {
+
+				temp1.push({
+					
+				})
+
+			}
+			
+        })
+    }
 
 	
 	function handledropdownMenu() {

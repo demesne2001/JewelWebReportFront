@@ -3,6 +3,9 @@ import React from 'react'
 import ReactApexChart from 'react-apexcharts';
 import { semiDoughnutOptions } from '../../ChartOptions/semidoughnut';
 import BlackDots from '../../Assets/image/Dots.png'
+import API from '../../Utility/API';
+import post from '../../Utility/APIHandle';
+import { useEffect,useState } from 'react';
 
 export default function ModeofSalesWise() {
 	const series = [44, 55, 41, 17, 15]
@@ -10,6 +13,55 @@ export default function ModeofSalesWise() {
 	const label = ["Comedy", "Action", "SciFi", "Drama", "Horror"]
 
 	const option = semiDoughnutOptions(label)
+
+	const [postData, setPostData] = useState({
+        "strBranch": "",
+        "strState": "",
+        "strCity": "",
+        "strItem": "",
+        "strSubItem": "",
+        "strItemGroup": "",
+        "strItemSubitem": "",
+        "strPurchaseParty": "",
+        "strSalesParty": "",
+        "strSaleman": "",
+        "strProduct": "",
+        "strDesignCatalogue": "",
+        "strSaleAging": "",
+        "strModeofSale": "",
+        "strTeamModeofSale": "",
+        "FromDate": "",
+        "ToDate": "",
+        "strMetalType": "",
+        "strDayBook": "",
+        "PageNo": 0,
+        "PageSize": 0,
+        "Search": ""
+    })
+
+
+    useEffect(()=>{
+        getdata()
+    },[])
+
+	function getdata() {
+
+		let temp1 = []
+
+		
+        post(postData,API.GetModeOfSalesWise,'post')
+        .then((res)=>{
+
+			for (let index = 0; index < res.data.lstResult.length; index++) {
+
+				temp1.push({
+					
+				})
+
+			}
+			
+        })
+    }
 
 	function handledropdownMenu() {
 		document.getElementById("myDropdownModeofsales").style.display === "block" ? document.getElementById("myDropdownModeofsales").style.display = "none" : document.getElementById("myDropdownModeofsales").style.display = "block";
