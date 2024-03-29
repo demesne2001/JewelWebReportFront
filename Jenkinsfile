@@ -31,7 +31,7 @@ pipeline {
         stage('Docker Run') {
             steps {
                 script{
-                    bat 'docker run -p 3000:3000 -d --name jsoftfront jsoftfront'
+                    bat 'docker run -p 4000:4000 -d --name jsoftfront jsoftfront'
                 }
                 echo 'Docker Running'
             }
