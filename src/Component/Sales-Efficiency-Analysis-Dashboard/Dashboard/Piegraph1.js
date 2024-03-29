@@ -1,27 +1,59 @@
-import React from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import contex from '../../contex/Contex';
+
+import API from '../../Utility/API'
+import post from '../../Utility/APIHandle'
 import ReactApexChart from 'react-apexcharts';
 
 
 
 export default function Piegraph1() {
+  const contexData = useContext(contex);
+  const [weight, setweight] = useState([])
+  const [name, setname] = useState([])
+  const [weight1, setweight1] = useState([])
+  const [name1, setname1] = useState([])
+  let inputdata = contexData.state;
 
-    const series = [44, 55]
+  useEffect(() => {
+      getdata()
+  }, [inputdata])
+
+  function getdata() {
+
+      inputdata = { ...inputdata, ['Grouping']: 's,r' }
+      console.log("branchwise data", inputdata);
+      post(inputdata, API.CommonCard, {}, 'post')
+          .then((res) => {
+             
+              setweight(res.data.lstResult[0]['FineWt'])
+              setname(res.data.lstResult[0]['SalesType'])
+              setweight1(res.data.lstResult[1]['FineWt'])
+              setname1(res.data.lstResult[1]['SalesType'])
+              console.log(res.data.lstResult[0]['FineWt'], "weright card");
+              inputdata = { ...inputdata, ['Grouping']: '' }
+          })
+  }
+
+    const series = [weight, weight1]
     
     const options = {
               chart: {
                 type: 'donut',
               },
               colors:['#8458b0','#da3e00'],
+              labels: [name,name1],
               plotOptions: {
                 pie: {
                   donut: {
                     labels: {
                       show: true,
+                      
                       name: {
                         
                       },
                       value: {
-                    
+                        fontSize:'12px',
                       }
                     }
                   }

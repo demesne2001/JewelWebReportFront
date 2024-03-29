@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useContext } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios';
 
 import Modal from 'react-bootstrap/Modal';
@@ -8,15 +8,38 @@ import API from '../../Utility/API';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import contex from '../../contex/Contex';
-
+import Commonmodel from '../../CommonModel/CommanModal';
+import currency from '../../Assets/img/svg/currency.svg';
+import '../../Assets/css/Custom.css'
 
 // import Commonmodel from '../../CommonModel/CommanModal';
 
 export default function Header() {
-	
+
 
 	const contexData = useContext(contex)
-	
+	let FilterData = {
+		...contexData.tempstate,
+		['strBranch']: contexData.tempstate['strBranch'],
+		['strState']: contexData.tempstate['strState'],
+		['strCity']: contexData.tempstate['strCity'],
+		['strItem']: contexData.tempstate['strItem'],
+		['strSubItem']: contexData.tempstate['strSubItem'],
+		['strItemGroup']: contexData.tempstate['strItemGroup'],
+		['strItemSubitem']: contexData.tempstate['strItemSubitem'],
+		['strPurchaseParty']: contexData.tempstate['strPurchaseParty'],
+		['strSalesParty']: contexData.tempstate['strSalesParty'],
+		['strSaleman']: contexData.tempstate['strSaleman'],
+		['strProduct']: contexData.tempstate['strProduct'].slice(0, -1),
+		['strDesignCatalogue']: contexData.tempstate['strDesignCatalogue'],
+		['strSaleAging']: contexData.tempstate['strSaleAging'].slice(0, -1),
+		['strModeofSale']: contexData.tempstate['strModeofSale'],
+		['strTeamModeofSale']: contexData.tempstate['strTeamModeofSale'],
+		['FromDate']: contexData.tempstate['FromDate'],
+		['ToDate']: contexData.tempstate['ToDate'],
+		['strMetalType']: contexData.tempstate['strMetalType'],
+		['strDayBook']: contexData.tempstate['strDayBook'],
+	}
 
 	const animatedComponents = makeAnimated();
 
@@ -45,22 +68,25 @@ export default function Header() {
 		"strDayBook": "",
 		"PageNo": 0,
 		"PageSize": 999,
-		"Search": ""
+		"Search": "",
+		"Grouping": ""
 	})
 
-	const [state,setState] = useState({})
-	const [branch,setBranch] =useState({})
-	const [region,setRegion] = useState({})
-	const [city,setCity] = useState({})
-	const [itemGroup,setItemGroup] = useState({})
-	const [product,setProduct] = useState({})
-	const [item,setItem] = useState({})
-	const [subItem,setSubItem] = useState({})
-	const [itemSubitem,setItemSubItem] = useState({})
-	const [design,Setdesign] = useState({})
-	const [salesman,setSalesMan]=useState({})
-	const [purchaseParty,setPurcharseParty] = useState({})
-	const [salesParty,setSalesParty] = useState({})
+	const [state, setState] = useState({})
+	const [branch, setBranch] = useState({})
+	const [region, setRegion] = useState({})
+	const [city, setCity] = useState({})
+	const [itemGroup, setItemGroup] = useState({})
+	const [product, setProduct] = useState({})
+	const [item, setItem] = useState({})
+	const [subItem, setSubItem] = useState({})
+	const [itemSubitem, setItemSubItem] = useState({})
+	const [design, Setdesign] = useState({})
+	const [salesman, setSalesMan] = useState({})
+	const [purchaseParty, setPurcharseParty] = useState({})
+	const [salesParty, setSalesParty] = useState({})
+	const [demo, setDemo] = useState()
+	const [props1, setProps1] = useState()
 
 	useEffect(() => {
 
@@ -111,13 +137,13 @@ export default function Header() {
 
 		post(postData, API.stateFilter, {}, 'post')
 			.then((res) => {
-				
+
 
 				for (let index = 0; index < res.data.lstResult.length; index++) {
 
 					temp1.push({
-						value: res.data.lstResult[index].StateID, 
-						label:res.data.lstResult[index].StateName  
+						value: res.data.lstResult[index].StateID,
+						label: res.data.lstResult[index].StateName
 					})
 
 				}
@@ -126,211 +152,207 @@ export default function Header() {
 			})
 	}
 
-	function getdataBranch(){
+	function getdataBranch() {
 		let temp1 = []
 
-		post(postData,API.BranchFilter,{},'post')
-		.then((res)=>{
-			
-			for (let index = 0; index < res.data.lstResult.length; index++) {
-	
-				temp1.push({
-					value: res.data.lstResult[index].BranchId, 
-					label:res.data.lstResult[index].BranchName  
-				})
-	
-			}
-			setBranch(temp1)
-		})
+		post(postData, API.BranchFilter, {}, 'post')
+			.then((res) => {
+
+				for (let index = 0; index < res.data.lstResult.length; index++) {
+
+					temp1.push({
+						value: res.data.lstResult[index].BranchId,
+						label: res.data.lstResult[index].BranchName
+					})
+
+				}
+				setBranch(temp1)
+			})
 
 	}
 
-	function getdataRegion(){
+	function getdataRegion() {
 		let temp1 = []
 
-		post(postData,API.regionFilter,{},'post')
-		.then((res)=>{
-			
-			
-			for (let index = 0; index < res.data.lstResult.length; index++) {
-	
-				temp1.push({})
-	
-			}
-			setRegion(temp1)
-		})
+		post(postData, API.regionFilter, {}, 'post')
+			.then((res) => {
+
+
+				for (let index = 0; index < res.data.lstResult.length; index++) {
+
+					temp1.push({})
+
+				}
+				setRegion(temp1)
+			})
 
 	}
 
-	function getdatacity(){
+	function getdatacity() {
 		let temp1 = []
 
-		post(postData,API.cityFilter,{},'post')
-		.then((res)=>{
-			
-			
-			for (let index = 0; index < res.data.lstResult.length; index++) {
-	
-				temp1.push({
-					value: res.data.lstResult[index].CityName, 
-					label:res.data.lstResult[index].CityName 
-				})
-	
-			}
-			setCity(temp1)
-		})
+		post(postData, API.cityFilter, {}, 'post')
+			.then((res) => {
+
+
+				for (let index = 0; index < res.data.lstResult.length; index++) {
+
+					temp1.push({
+						value: res.data.lstResult[index].CityName,
+						label: res.data.lstResult[index].CityName
+					})
+
+				}
+				setCity(temp1)
+			})
 	}
 
-	function getdataitemgroup(){
+	function getdataitemgroup() {
 		let temp1 = []
 
-		post(postData,API.itemGroupFilter,{},'post')
-		.then((res)=>{
-			
-			
-			for (let index = 0; index < res.data.lstResult.length; index++) {
-	
-				temp1.push({
-					value: res.data.lstResult[index].ItemGroupID, 
-					label:res.data.lstResult[index].GroupName +'('+res.data.lstResult[index].ShortName +')'
-				})
-	
-			}
-			setItemGroup(temp1)
-		})
+		post(postData, API.itemGroupFilter, {}, 'post')
+			.then((res) => {
+
+
+				for (let index = 0; index < res.data.lstResult.length; index++) {
+
+					temp1.push({
+						value: res.data.lstResult[index].ItemGroupID,
+						label: res.data.lstResult[index].GroupName + '(' + res.data.lstResult[index].ShortName + ')'
+					})
+
+				}
+				setItemGroup(temp1)
+			})
 	}
 
-	function getdataproduct(){
+	function getdataproduct() {
 		let temp1 = []
 
-		post(postData,API.productFilter,{},'post')
-		.then((res)=>{
-			
-			
-			for (let index = 0; index < res.data.lstResult.length; index++) {
-	
-				temp1.push({
-					value: res.data.lstResult[index].ProductId, 
-					label:res.data.lstResult[index].ProductName 
-				})
-	
-			}
-			setProduct(temp1)
-		})
+		post(postData, API.productFilter, {}, 'post')
+			.then((res) => {
+
+
+				for (let index = 0; index < res.data.lstResult.length; index++) {
+
+					temp1.push({
+						value: res.data.lstResult[index].ProductId,
+						label: res.data.lstResult[index].ProductName
+					})
+
+				}
+				setProduct(temp1)
+			})
 	}
 
-	function getdataitem(){
+	function getdataitem() {
 		let temp1 = []
 
-		post(postData,API.itemFilter,{},'post')
-		.then((res)=>{
-			
-			
-			for (let index = 0; index < res.data.lstResult.length; index++) {
-	
-				// temp1.push({
-				// 	value: res.data.lstResult[index].ProductId, 
-				// 	label:res.data.lstResult[index].ProductName 
-				// })
+		post(postData, API.itemFilter, {}, 'post')
+			.then((res) => {
 
-				temp1.push({})
-	
-			}
-			setItem(temp1)
-		})
+
+				for (let index = 0; index < res.data.lstResult.length; index++) {
+
+					temp1.push({
+						value: res.data.lstResult[index].ItemId,
+						label: res.data.lstResult[index].ItemName
+					})
+
+				}
+				setItem(temp1)
+			})
 	}
 
-	function getdatasubitem(){
+	function getdatasubitem() {
 		let temp1 = []
 
-		post(postData,API.GetSubItem,{},'post')
-		.then((res)=>{
-			
-			
-			for (let index = 0; index < res.data.lstResult.length; index++) {
-	
-				temp1.push({
-					value: res.data.lstResult[index].SubItemId, 
-					label:res.data.lstResult[index].SubItemName 
-				})				
-	
-			}
-			setSubItem(temp1)
-		})
+		post(postData, API.GetSubItem, {}, 'post')
+			.then((res) => {
+
+
+				for (let index = 0; index < res.data.lstResult.length; index++) {
+
+					temp1.push({
+						value: res.data.lstResult[index].SubItemId,
+						label: res.data.lstResult[index].SubItemName
+					})
+
+				}
+				setSubItem(temp1)
+			})
 	}
 
-	function getdataitemsubitem(){
+	function getdataitemsubitem() {
 		let temp1 = []
 
-		post(postData,API.GetItemWithSubitem,{},'post')
-		.then((res)=>{
-			
-			
-			for (let index = 0; index < res.data.lstResult.length; index++) {
-	
-				temp1.push({
-					value: res.data.lstResult[index].ItemSubID, 
-					label:res.data.lstResult[index].SubItemWithStyleName 
-				})
+		post(postData, API.GetItemWithSubitem, {}, 'post')
+			.then((res) => {
 
-				
-	
-			}
-			setItemSubItem(temp1)
-		})
+
+				for (let index = 0; index < res.data.lstResult.length; index++) {
+
+					temp1.push({
+						value: res.data.lstResult[index].ItemSubID,
+						label: res.data.lstResult[index].SubItemWithStyleName
+					})
+
+				}
+				setItemSubItem(temp1)
+			})
 	}
 
-	function getdatadesign(){
+	function getdatadesign() {
 		let temp1 = []
 
-		post(postData,API.GetDesignCatalogue,{},'post')
-		.then((res)=>{
-			
-			
-			for (let index = 0; index < res.data.lstResult.length; index++) {
-	
-				temp1.push({
-					value: res.data.lstResult[index].DesignCatalogID, 
-					label:res.data.lstResult[index].DesignNo 
-				})
-			}
-			Setdesign(temp1)
-		})
+		post(postData, API.GetDesignCatalogue, {}, 'post')
+			.then((res) => {
+
+
+				for (let index = 0; index < res.data.lstResult.length; index++) {
+
+					temp1.push({
+						value: res.data.lstResult[index].DesignCatalogID,
+						label: res.data.lstResult[index].DesignNo
+					})
+				}
+				Setdesign(temp1)
+			})
 	}
 
-	function getdatasalesman(){
+	function getdatasalesman() {
 		let temp1 = []
 
-		post(postData,API.GetSaleman,{},'post')
-		.then((res)=>{
-			
-			
-			for (let index = 0; index < res.data.lstResult.length; index++) {
-	
-				temp1.push({
-					value: res.data.lstResult[index].SalesmanID, 
-					label:res.data.lstResult[index].SalesmanName 
-				})
-			}
-			setSalesMan(temp1)
-		})
+		post(postData, API.GetSaleman, {}, 'post')
+			.then((res) => {
+
+
+				for (let index = 0; index < res.data.lstResult.length; index++) {
+
+					temp1.push({
+						value: res.data.lstResult[index].SalesmanID,
+						label: res.data.lstResult[index].SalesmanName
+					})
+				}
+				setSalesMan(temp1)
+			})
 	}
 
-	function getdatasalesparty(){
+	function getdatasalesparty() {
 		let temp1 = []
 
-		post(postData,API.GetSalesParty,{},'post')
-		.then((res)=>{
+		post(postData, API.GetSalesParty, {}, 'post')
+			.then((res) => {
 
-			for (let index = 0; index < res.data.lstResult.length; index++) {
-	
-				temp1.push({
-					value: res.data.lstResult[index].AccountId, 
-					label:res.data.lstResult[index].AccountName 
-				})
-			}
-			setSalesParty(temp1)
-		})
+				for (let index = 0; index < res.data.lstResult.length; index++) {
+
+					temp1.push({
+						value: res.data.lstResult[index].AccountId,
+						label: res.data.lstResult[index].AccountName
+					})
+				}
+				setSalesParty(temp1)
+			})
 	}
 
 	// function getdatapurchaseparty(){
@@ -339,9 +361,9 @@ export default function Header() {
 
 	// 	post(postData,API.GetSaleman,{},'post')
 	// 	.then((res)=>{
-				
+
 	// 		for (let index = 0; index < res.data.lstResult.length; index++) {
-	
+
 	// 			temp1.push({
 	// 				value: res.data.lstResult[index].SalesmanID, 
 	// 				label:res.data.lstResult[index].SalesmanName 
@@ -352,243 +374,336 @@ export default function Header() {
 
 	// }
 
-	function handleonchange(e){
-		setPostData({...postData,[e.target.name]:e.target.value})
+	function handleonchange(e) {
+		setPostData({ ...postData, [e.target.name]: e.target.value })
 
 	}
 
-	function handleselect(e,selectData){  // function to handle selected data and update respactive postdata items
+	function handleselect(e, selectData) {  // function to handle selected data and update respactive postdata items
 
 		if (selectData.name === "branchSelect") {
-			
-			let temp=''
 
-			for (let index = 0; index< e.length; index++) {
+			let temp = ''
 
-				if (index+1 === e.length){ 
+			for (let index = 0; index < e.length; index++) {
 
-					temp = temp + e[index].value	
+				if (index + 1 === e.length) {
+
+					temp = temp + e[index].value
 				}
 
-				else{
+				else {
 
 					temp = temp + e[index].value + ','
 				}
 			}
 			// console.log(temp)
-			setPostData({...postData,['strBranch']:temp})
-			
+			setPostData({ ...postData, ['strBranch']: temp })
+
 		}
 
 		else if (selectData.name === "regionSelect") {
-			
-			let temp=''
 
-			for (let index = 0; index< e.length; index++) {
+			let temp = ''
 
-				if (index+1 === e.length){ 
+			for (let index = 0; index < e.length; index++) {
 
-					temp = temp + e[index].value	
+				if (index + 1 === e.length) {
+
+					temp = temp + e[index].value
 				}
 
-				else{
+				else {
 
 					temp = temp + e[index].value + ','
 				}
 			}
-			
+
 			// setPostData({...postData,['setBranch']:temp})
 		}
 
 		else if (selectData.name === "stateSelect") {
-			
-			let temp=''
 
-			for (let index = 0; index< e.length; index++) {
+			let temp = ''
 
-				if (index+1 === e.length){ 
+			for (let index = 0; index < e.length; index++) {
 
-					temp = temp + e[index].value	
+				if (index + 1 === e.length) {
+
+					temp = temp + e[index].value
 				}
 
-				else{
+				else {
 
 					temp = temp + e[index].value + ','
 				}
 			}
-			
-			setPostData({...postData,['strState']:temp})			
+
+			setPostData({ ...postData, ['strState']: temp })
 		}
 
-		else if(selectData.name === "citySelect"){
+		else if (selectData.name === "citySelect") {
 
-			let temp=''
+			let temp = ''
 
-			for (let index = 0; index< e.length; index++) {
+			for (let index = 0; index < e.length; index++) {
 
-				if (index+1 === e.length){ 
+				if (index + 1 === e.length) {
 
-					temp = temp + e[index].value	
+					temp = temp + e[index].value
 				}
 
-				else{
+				else {
 
 					temp = temp + e[index].value + ','
 				}
 			}
 
-			setPostData({...postData,['strCity']:temp})	
+			setPostData({ ...postData, ['strCity']: temp })
 
 		}
 
-		else if (selectData.name === "itemGroupSelect"){
+		else if (selectData.name === "itemGroupSelect") {
 
-			let temp=''
+			let temp = ''
 
-			for (let index = 0; index< e.length; index++) {
+			for (let index = 0; index < e.length; index++) {
 
-				if (index+1 === e.length){ 
+				if (index + 1 === e.length) {
 
-					temp = temp + e[index].value	
+					temp = temp + e[index].value
 				}
 
-				else{
+				else {
 
 					temp = temp + e[index].value + ','
 				}
 			}
 
-			setPostData({...postData,['strItemGroup']:temp})	
+			setPostData({ ...postData, ['strItemGroup']: temp })
 		}
 
-		else if (selectData.name === "productSelect"){
+		else if (selectData.name === "productSelect") {
 
-			let temp=''
+			let temp = ''
 
-			for (let index = 0; index< e.length; index++) {
+			for (let index = 0; index < e.length; index++) {
 
-				if (index+1 === e.length){ 
+				if (index + 1 === e.length) {
 
-					temp = temp + e[index].value	
+					temp = temp + e[index].value
 				}
 
-				else{
+				else {
 
 					temp = temp + e[index].value + ','
 				}
 			}
 
-			setPostData({...postData,['strProduct']:temp})	
+			setPostData({ ...postData, ['strProduct']: temp })
 		}
 
-		else if (selectData.name === "itemSelect"){
+		else if (selectData.name === "itemSelect") {
 
-			let temp=''
+			let temp = ''
 
-			for (let index = 0; index< e.length; index++) {
+			for (let index = 0; index < e.length; index++) {
 
-				if (index+1 === e.length){ 
+				if (index + 1 === e.length) {
 
-					temp = temp + e[index].value	
+					temp = temp + e[index].value
 				}
 
-				else{
+				else {
 
 					temp = temp + e[index].value + ','
 				}
 			}
 
-			setPostData({...postData,['strItem']:temp})	
+			setPostData({ ...postData, ['strItem']: temp })
 		}
 
-		else if (selectData.name === "subItemSelect"){
+		else if (selectData.name === "subItemSelect") {
 
-			let temp=''
+			let temp = ''
 
-			for (let index = 0; index< e.length; index++) {
+			for (let index = 0; index < e.length; index++) {
 
-				if (index+1 === e.length){ 
+				if (index + 1 === e.length) {
 
-					temp = temp + e[index].value	
+					temp = temp + e[index].value
 				}
 
-				else{
+				else {
 
 					temp = temp + e[index].value + ','
 				}
 			}
 
-			setPostData({...postData,['strSubItem']:temp})	
+			setPostData({ ...postData, ['strSubItem']: temp })
 		}
 
-		else if (selectData.name === "itemSubItemSelect"){
+		else if (selectData.name === "itemSubItemSelect") {
 
-			let temp=''
+			let temp = ''
 
-			for (let index = 0; index< e.length; index++) {
+			for (let index = 0; index < e.length; index++) {
 
-				if (index+1 === e.length){ 
+				if (index + 1 === e.length) {
 
-					temp = temp + e[index].value	
+					temp = temp + e[index].value
 				}
 
-				else{
+				else {
 
 					temp = temp + e[index].value + ','
 				}
 			}
 
-			setPostData({...postData,['strItemSubitem']:temp})	
+			setPostData({ ...postData, ['strItemSubitem']: temp })
 		}
 
-		else if (selectData.name === "designSelect"){
+		else if (selectData.name === "designSelect") {
 
-			let temp=''
+			let temp = ''
 
-			for (let index = 0; index< e.length; index++) {
+			for (let index = 0; index < e.length; index++) {
 
-				if (index+1 === e.length){ 
+				if (index + 1 === e.length) {
 
-					temp = temp + e[index].value	
+					temp = temp + e[index].value
 				}
 
-				else{
+				else {
 
 					temp = temp + e[index].value + ','
 				}
 			}
 
-			setPostData({...postData,['strDesignCatalogue']:temp})	
+			setPostData({ ...postData, ['strDesignCatalogue']: temp })
 		}
 
-		else if (selectData.name === "salesmanSelect"){
+		else if (selectData.name === "salesmanSelect") {
 
-			let temp=''
+			let temp = ''
 
-			for (let index = 0; index< e.length; index++) {
+			for (let index = 0; index < e.length; index++) {
 
-				if (index+1 === e.length){ 
+				if (index + 1 === e.length) {
 
-					temp = temp + e[index].value	
+					temp = temp + e[index].value
 				}
 
-				else{
+				else {
 
 					temp = temp + e[index].value + ','
 				}
 			}
 
-			setPostData({...postData,['strSaleman']:temp})	
+			setPostData({ ...postData, ['strSaleman']: temp })
 		}
 
 
 	}
 
-	function handleApplyFilter(){
+	function handleApplyFilter() {
 		contexData.SetState(postData)
 		handleOnClose()
 	}
 
+	function handleDesignCommanModal() {
+		let myvalue = contexData.tempstate['strItemSubitem']
+
+		let demoo = []
+		demoo.push(myvalue.split(','))
+
+		let newarr = []
+
+
+		for (let index = 0; index < demoo[0].length; index++) {
+			if (demoo[0].indexOf("") === -1) {
+				newarr.push(parseInt(demoo[0][index]))
+			}
+		}
+		setDemo(newarr)
+		setProps1({ 'api': API.GetItemWithSubitem, 'labelname': 'strItemSubitem', 'id': 'ItemSubID', 'name': 'SubItemWithStyleName' })
+		contexData.setchildFilterShow(true);
+	}
+
+	function handlePurchaseCommanModal() {
+		let myvalue = contexData.tempstate['strPurchaseParty']
+
+		let demoo = []
+		demoo.push(myvalue.split(','))
+
+		let newarr = []
+
+
+		for (let index = 0; index < demoo[0].length; index++) {
+			if (demoo[0].indexOf("") === -1) {
+				newarr.push(parseInt(demoo[0][index]))
+			}
+		}
+		setDemo(newarr)
+		setProps1({ 'api': API.GetPurchaseParty, 'labelname': 'strPurchaseParty', 'id': 'DesignCatalogID', 'name': 'DesignNo' })
+		contexData.setchildFilterShow(true);
+	}
+
+	function handleSalesCommanModal() {
+		let myvalue = contexData.tempstate['strSalesParty']
+
+		let demoo = []
+		demoo.push(myvalue.split(','))
+
+		let newarr = []
+
+
+		for (let index = 0; index < demoo[0].length; index++) {
+			if (demoo[0].indexOf("") === -1) {
+				newarr.push(parseInt(demoo[0][index]))
+			}
+		}
+		setDemo(newarr)
+		setProps1({ 'api': API.GetSalesParty, 'labelname': 'strSalesParty', 'id': 'AccountId', 'name': 'AccountName' })
+		contexData.setchildFilterShow(true);
+	}
+
+	function handleDesignCatalogueCommanModal() {
+		let myvalue = contexData.tempstate['strDesignCatalogue']
+
+		let demoo = []
+		demoo.push(myvalue.split(','))
+
+		let newarr = []
+
+
+		for (let index = 0; index < demoo[0].length; index++) {
+			if (demoo[0].indexOf("") === -1) {
+				newarr.push(parseInt(demoo[0][index]))
+			}
+		}
+		setDemo(newarr)
+		setProps1({ 'api': API.GetDesignCatalogue, 'labelname': 'strDesignCatalogue', 'id': 'DesignCatalogID', 'name': 'DesignNo' })
+		contexData.setchildFilterShow(true);
+	}
+
+	function handleThousand(n) {
+		localStorage.setItem("value", n)
+		contexData.setcurrency(n)
+	}
+	function handleonchangeCurrency() {
+		document.getElementById("myDropdown").style.display === "block" ? document.getElementById("myDropdown").style.display = "none" : document.getElementById("myDropdown").style.display = "block";
+	}
+
+	window.onclick = function (event) {
+		if (!event.target.matches('.dropbtn') && !event.target.matches('#default') && !event.target.matches('#lakh') && !event.target.matches('#million') && !event.target.matches('#thousand') && !event.target.matches('#crore') && !event.target.matches('#billion')) {
+			console.log("hi headerrr");
+			if (document.getElementsByClassName("dropdown-content")[0] !== undefined) {
+				document.getElementsByClassName("dropdown-content")[0].style.display = "none";
+			}
+
+		}
+	}
 
 	return (
 		<>
@@ -640,6 +755,25 @@ export default function Header() {
 													<li className="geex-content__header__quickaction__item">
 														<div className="geex-content__header__quickaction__link crancy-header__alarm top-header-icon"
 															id="crancy-header__full">
+															{localStorage.getItem("value") === ''?<img src={currency} className='dropbtn' onClick={handleonchangeCurrency} />:null}
+															{localStorage.getItem("value") === 'k'?<button className='dropbtn' onClick={handleonchangeCurrency}>Thousand</button>:null}
+															{localStorage.getItem("value") === 'l'?<button className='dropbtn' onClick={handleonchangeCurrency}>Lakh</button>:null}
+															{localStorage.getItem("value") === 'm'?<button className='dropbtn' onClick={handleonchangeCurrency}>Million</button>:null}
+															{localStorage.getItem("value") === 'c'?<button className='dropbtn' onClick={handleonchangeCurrency}>Crore</button>:null}
+															{localStorage.getItem("value") === 'b'?<button className='dropbtn' onClick={handleonchangeCurrency}>Billion</button>:null}
+														</div>
+														<div id="myDropdown" class="dropdown-content">
+															<a id='default' onClick={() => handleThousand("")}>Default</a><hr className='custom-hr' />
+															<a id='thousand' onClick={() => handleThousand("k")}>Thousand</a><hr className='custom-hr' />
+															<a id='lakh' onClick={() => handleThousand("l")}>Lakh</a><hr className='custom-hr' />
+															<a id='million' onClick={() => handleThousand("m")}>Million</a><hr className='custom-hr' />
+															<a id='crore' onClick={() => handleThousand("c")}>Crore</a><hr className='custom-hr' />
+															<a id='billion' onClick={() => handleThousand("b")}>Billion</a>
+														</div>
+													</li>
+													<li className="geex-content__header__quickaction__item">
+														<div className="geex-content__header__quickaction__link crancy-header__alarm top-header-icon"
+															id="crancy-header__full">
 															<i className="fas fa-expand-alt" onClick={fullscreen}></i>
 														</div>
 													</li>
@@ -663,264 +797,266 @@ export default function Header() {
 						</div>
 					</div>
 				</div>
-			</header>
+			</header >
+			{
+				contexData.childFilterShow === true ? <Commonmodel modelprops={props1} prdemo={demo} /> :
 
-			<Modal className="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl modal-filter" show={filterFlag} onHide={handleOnClose} backdrop="static" keyboard={false} size='xl'>
-				{/* <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+					<Modal className="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl modal-filter" show={filterFlag} onHide={handleOnClose} backdrop="static" keyboard={false} size='xl'>
+						{/* <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
 		aria-labelledby="staticBackdropLabel" aria-hidden="true"> */}
 
-				{/* <div class="modal-dialog modal-dialog-c`entered modal-dialog-scrollable modal-xl modal-filter" id="staticBackdrop" data-bs-backdrop="static"  data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true"> */}
-				<div class="modal-content">
+						{/* <div class="modal-dialog modal-dialog-c`entered modal-dialog-scrollable modal-xl modal-filter" id="staticBackdrop" data-bs-backdrop="static"  data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true"> */}
+						<div class="modal-content">
 
-					<Modal.Header class="modal-body-header" closeButton>
+							<Modal.Header class="modal-body-header" closeButton>
 
-						<div class="container">
-							<div class="card-graph-detail">
-								<div class="row">
-									<div class="filter-top">
-										<form class="form-group">
-											<div class="row">
-												<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-													<div class="card-filter-contain top-card-filter">
-														<label for="sel1" class="form-label">From Date</label>
-														<input class="form-control  date-spacing" type="date" onChange={handleonchange} name='FromDate'/>
+								<div class="container">
+									<div class="card-graph-detail">
+										<div class="row">
+											<div class="filter-top">
+												<form class="form-group">
+													<div class="row">
+														<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+															<div class="card-filter-contain top-card-filter">
+																<label for="sel1" class="form-label">From Date</label>
+																<input class="form-control  date-spacing" type="date" onChange={handleonchange} name='FromDate' />
+															</div>
+														</div>
+														<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+															<div class="card-filter-contain top-card-filter">
+																<label for="sel1" class="form-label">To Date</label>
+																<input class="form-control" type="date" onChange={handleonchange} name='ToDate' />
+															</div>
+														</div>
+														<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+															<div class="card-filter-contain top-card-filter">
+																<form class="from-group">
+																	<label for="sel1" class="form-label">
+
+																		Metal Type</label>
+																	<select
+																		class="form-select form-control filter-header-dropdown"
+																		aria-label="Default select example">
+																		<option selected>Select Metal Type</option>
+																		<option value="1">One</option>
+																		<option value="2">Two</option>
+																		<option value="3">Three</option>
+																	</select>
+
+																</form>
+															</div>
+														</div>
+														<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+															<div class="card-filter-contain top-card-filter">
+																<form class="from-group">
+																	<label for="sel1" class="form-label">
+
+																		Day Book Selection</label>
+																	<select
+																		class="form-select form-control filter-header-dropdown"
+																		aria-label="Default select example">
+																		<option selected>Select Day Book</option>
+																		<option value="1">One</option>
+																		<option value="2">Two</option>
+																		<option value="3">Three</option>
+																	</select>
+
+																</form>
+															</div>
+														</div>
 													</div>
-												</div>
-												<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-													<div class="card-filter-contain top-card-filter">
-														<label for="sel1" class="form-label">To Date</label>
-														<input class="form-control" type="date" onChange={handleonchange} name='ToDate'/>
-													</div>
-												</div>
-												<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-													<div class="card-filter-contain top-card-filter">
-														<form class="from-group">
-															<label for="sel1" class="form-label">
-
-																Metal Type</label>
-															<select
-																class="form-select form-control filter-header-dropdown"
-																aria-label="Default select example">
-																<option selected>Select Metal Type</option>
-																<option value="1">One</option>
-																<option value="2">Two</option>
-																<option value="3">Three</option>
-															</select>
-
-														</form>
-													</div>
-												</div>
-												<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-													<div class="card-filter-contain top-card-filter">
-														<form class="from-group">
-															<label for="sel1" class="form-label">
-
-																Day Book Selection</label>
-															<select
-																class="form-select form-control filter-header-dropdown"
-																aria-label="Default select example">
-																<option selected>Select Day Book</option>
-																<option value="1">One</option>
-																<option value="2">Two</option>
-																<option value="3">Three</option>
-															</select>
-
-														</form>
-													</div>
-												</div>
+												</form>
 											</div>
-										</form>
+										</div>
 									</div>
 								</div>
-							</div>
-						</div>
 
-					</Modal.Header>
+							</Modal.Header>
 
 
-					<Modal.Body class="modal-body">
-						<div class="container">
-							<form>
-								<div class="row">
-									<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-										<div class="card-filter-contain">
-											<i class="fa-solid fa-building"></i>
-											<label for="sel1" class="form-label">Branch</label>
-											<Select
-												
-												isMulti
-												name="branchSelect"
+							<Modal.Body class="modal-body">
+								<div class="container">
+									<form>
+										<div class="row">
+											<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+												<div class="card-filter-contain">
+													<i class="fa-solid fa-building"></i>
+													<label for="sel1" class="form-label">Branch</label>
+													<Select
 
-												options={branch}
+														isMulti
+														name="branchSelect"
 
-												className="basic-multi-select"
-												classNamePrefix="select"
-												onChange={handleselect}
+														options={branch}
 
-												components={animatedComponents}
-												closeMenuOnSelect={false}
-											/>
-										</div>
-									</div>
+														className="basic-multi-select"
+														classNamePrefix="select"
+														onChange={handleselect}
 
-									<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-										<div class="card-filter-contain">
-											<i class="fas fa-globe"></i>
-											<label for="sel1" class="form-label">Region </label>
-											<Select
-												// defaultValue={[colourOptions[2], colourOptions[3]]}
-												isMulti
-												name="regionSelect"
+														components={animatedComponents}
+														closeMenuOnSelect={false}
+													/>
+												</div>
+											</div>
 
-												options={region}
+											<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+												<div class="card-filter-contain">
+													<i class="fas fa-globe"></i>
+													<label for="sel1" class="form-label">Region </label>
+													<Select
+														// defaultValue={[colourOptions[2], colourOptions[3]]}
+														isMulti
+														name="regionSelect"
 
-												className="basic-multi-select"
-												classNamePrefix="select"
-												onChange={handleselect}
+														options={region}
 
-												components={animatedComponents}
-												closeMenuOnSelect={false}
-											/>
+														className="basic-multi-select"
+														classNamePrefix="select"
+														onChange={handleselect}
 
-										</div>
-									</div>
+														components={animatedComponents}
+														closeMenuOnSelect={false}
+													/>
 
-									<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-										<div class="card-filter-contain">
-											<i class="fas fa-map-marker-alt"></i>
-											<label for="sel1" class="form-label">State</label>
+												</div>
+											</div>
 
-											<Select
-												// defaultValue={[colourOptions[2], colourOptions[3]]}
-												isMulti
-												name="stateSelect"
+											<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+												<div class="card-filter-contain">
+													<i class="fas fa-map-marker-alt"></i>
+													<label for="sel1" class="form-label">State</label>
 
-												options={state}
+													<Select
+														// defaultValue={[colourOptions[2], colourOptions[3]]}
+														isMulti
+														name="stateSelect"
 
-												className="basic-multi-select"
-												classNamePrefix="select"
-												onChange={handleselect}
+														options={state}
 
-												components={animatedComponents}
-												closeMenuOnSelect={false}
-											/>
+														className="basic-multi-select"
+														classNamePrefix="select"
+														onChange={handleselect}
 
-											
-										</div>
-									</div>
+														components={animatedComponents}
+														closeMenuOnSelect={false}
+													/>
 
-									<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-										<div class="card-filter-contain">
-											<i class="fas fa-city"></i>
-											<label for="sel1" class="form-label">City</label>
-											<Select
-												// defaultValue={[colourOptions[2], colourOptions[3]]}
-												isMulti
-												name="citySelect"
 
-												options={city}
+												</div>
+											</div>
 
-												className="basic-multi-select"
-												classNamePrefix="select"
-												onChange={handleselect}
+											<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+												<div class="card-filter-contain">
+													<i class="fas fa-city"></i>
+													<label for="sel1" class="form-label">City</label>
+													<Select
+														// defaultValue={[colourOptions[2], colourOptions[3]]}
+														isMulti
+														name="citySelect"
 
-												components={animatedComponents}
-												closeMenuOnSelect={false}
-											/>
-										</div>
-									</div>
+														options={city}
 
-									<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-										<div class="card-filter-contain">
-											<i class="fas fa-chart-area"></i>
-											<label for="sel1" class="form-label">Item Group</label>
-											<Select
-												// defaultValue={[colourOptions[2], colourOptions[3]]}
-												isMulti
-												name="itemGroupSelect"
+														className="basic-multi-select"
+														classNamePrefix="select"
+														onChange={handleselect}
 
-												options={itemGroup}
+														components={animatedComponents}
+														closeMenuOnSelect={false}
+													/>
+												</div>
+											</div>
 
-												className="basic-multi-select"
-												classNamePrefix="select"
-												onChange={handleselect}
+											<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+												<div class="card-filter-contain">
+													<i class="fas fa-chart-area"></i>
+													<label for="sel1" class="form-label">Item Group</label>
+													<Select
+														// defaultValue={[colourOptions[2], colourOptions[3]]}
+														isMulti
+														name="itemGroupSelect"
 
-												components={animatedComponents}
-												closeMenuOnSelect={false}
-											/>
-										</div>
-									</div>
+														options={itemGroup}
 
-									<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-										<div class="card-filter-contain">
-											<i class="fas fa-boxes"></i>
-											<label for="sel1" class="form-label">Product</label>
-											<Select
-												// defaultValue={[colourOptions[2], colourOptions[3]]}
-												isMulti
-												name="productSelect"
+														className="basic-multi-select"
+														classNamePrefix="select"
+														onChange={handleselect}
 
-												options={product}
+														components={animatedComponents}
+														closeMenuOnSelect={false}
+													/>
+												</div>
+											</div>
 
-												className="basic-multi-select"
-												classNamePrefix="select"
-												onChange={handleselect}
+											<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+												<div class="card-filter-contain">
+													<i class="fas fa-boxes"></i>
+													<label for="sel1" class="form-label">Product</label>
+													<Select
+														// defaultValue={[colourOptions[2], colourOptions[3]]}
+														isMulti
+														name="productSelect"
 
-												components={animatedComponents}
-												closeMenuOnSelect={false}
-											/>
-										</div>
-									</div>
+														options={product}
 
-									<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-										<div class="card-filter-contain">
-											<i class="fas fa-project-diagram"></i>
-											<label for="sel1" class="form-label">Item</label>
-											<Select
-												// defaultValue={[colourOptions[2], colourOptions[3]]}
-												isMulti
-												name="itemSelect"
+														className="basic-multi-select"
+														classNamePrefix="select"
+														onChange={handleselect}
 
-												options={item}
+														components={animatedComponents}
+														closeMenuOnSelect={false}
+													/>
+												</div>
+											</div>
 
-												className="basic-multi-select"
-												classNamePrefix="select"
-												onChange={handleselect}
+											<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+												<div class="card-filter-contain">
+													<i class="fas fa-project-diagram"></i>
+													<label for="sel1" class="form-label">Item</label>
+													<Select
+														// defaultValue={[colourOptions[2], colourOptions[3]]}
+														isMulti
+														name="itemSelect"
 
-												components={animatedComponents}
-												closeMenuOnSelect={false}
-											/>
-										</div>
-									</div>
+														options={item}
 
-									<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-										<div class="card-filter-contain">
-											<i class="fas fa-th-list"></i>
-											<label for="sel1" class="form-label">Sub-Item</label>
-											<Select
-												// defaultValue={[colourOptions[2], colourOptions[3]]}
-												isMulti
-												name="subItemSelect"
+														className="basic-multi-select"
+														classNamePrefix="select"
+														onChange={handleselect}
 
-												options={subItem}
+														components={animatedComponents}
+														closeMenuOnSelect={false}
+													/>
+												</div>
+											</div>
 
-												className="basic-multi-select"
-												classNamePrefix="select"
-												onChange={handleselect}
+											<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+												<div class="card-filter-contain">
+													<i class="fas fa-th-list"></i>
+													<label for="sel1" class="form-label">Sub-Item</label>
+													<Select
+														// defaultValue={[colourOptions[2], colourOptions[3]]}
+														isMulti
+														name="subItemSelect"
 
-												components={animatedComponents}
-												closeMenuOnSelect={false}
-											/>
-										</div>
-									</div>
+														options={subItem}
+
+														className="basic-multi-select"
+														classNamePrefix="select"
+														onChange={handleselect}
+
+														components={animatedComponents}
+														closeMenuOnSelect={false}
+													/>
+												</div>
+											</div>
 
 
 
-									<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-										<div class="card-filter-contain">
-											<i class="fas fa-sitemap"></i>
-											<label for="sel1" class="form-label">Item with Sub-item</label>
-											<Select
+											<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+												<div class="card-filter-contain">
+													<i class="fas fa-sitemap"></i>
+													<label for="sel1" class="form-label">Item with Sub-item</label>
+													{/* <Select
 												// defaultValue={[colourOptions[2], colourOptions[3]]}
 												isMulti
 												name="itemSubItemSelect"
@@ -933,15 +1069,16 @@ export default function Header() {
 
 												components={animatedComponents}
 												closeMenuOnSelect={false}
-											/>
-										</div>
-									</div>
+											/> */}
+													<input value={FilterData['strItemSubitem']} onClick={handleDesignCommanModal} />
+												</div>
+											</div>
 
-									<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-										<div class="card-filter-contain">
-											<i class="fas fa-gem"></i>
-											<label for="sel1" class="form-label">Design Catalogue</label>
-											<Select
+											<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+												<div class="card-filter-contain">
+													<i class="fas fa-gem"></i>
+													<label for="sel1" class="form-label">Design Catalogue</label>
+													{/* <Select
 												// defaultValue={[colourOptions[2], colourOptions[3]]}
 												isMulti
 												name="designSelect"
@@ -954,85 +1091,86 @@ export default function Header() {
 
 												components={animatedComponents}
 												closeMenuOnSelect={false}
-											/>
+											/> */}
+													<input value={FilterData['strDesignCatalogue']} onClick={handleDesignCatalogueCommanModal} />
 
-										</div>
-									</div>
-
-									<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-										<div class="card-filter-contain">
-											<i class="fas fa-users"></i>
-											<label for="sel1" class="form-label">Saleman</label>
-											<Select
-												// defaultValue={[colourOptions[2], colourOptions[3]]}
-												isMulti
-												name="salesmanSelect"
-
-												options={salesman}
-
-												className="basic-multi-select"
-												classNamePrefix="select"
-												// onChange={handleselect}
-
-												components={animatedComponents}
-												closeMenuOnSelect={false}
-											/>
-										</div>
-									</div>
-
-									<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-										<div class="card-filter-contain">
-											<i class="fas fa-layer-group"></i>
-											<label for="sel1" class="form-label">Mode of Sale</label>
-											<div class="dropdown">
-												<select class="selectpicker" multiple aria-label="Default select example"
-													data-live-search="true">
-													<option value="one">One</option>
-													<option value="two">Two</option>
-													<option value="three">Three</option>
-													<option value="four">Four</option>
-												</select>
+												</div>
 											</div>
-										</div>
-									</div>
 
-									<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-										<div class="card-filter-contain">
-											<i class="fas fa-stream"></i>
-											<label for="sel1" class="form-label">Team & Mode of Sale</label>
-											<div class="dropdown">
-												<select class="selectpicker" multiple aria-label="Default select example"
-													data-live-search="true">
-													<option value="one">One</option>
-													<option value="two">Two</option>
-													<option value="three">Three</option>
-													<option value="four">Four</option>
-												</select>
+											<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+												<div class="card-filter-contain">
+													<i class="fas fa-users"></i>
+													<label for="sel1" class="form-label">Saleman</label>
+													<Select
+														// defaultValue={[colourOptions[2], colourOptions[3]]}
+														isMulti
+														name="salesmanSelect"
+
+														options={salesman}
+
+														className="basic-multi-select"
+														classNamePrefix="select"
+														// onChange={handleselect}
+
+														components={animatedComponents}
+														closeMenuOnSelect={false}
+													/>
+												</div>
 											</div>
-										</div>
-									</div>
 
-									<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-										<div class="card-filter-contain">
-											<i class="fas fa-chart-line"></i>
-											<label for="sel1" class="form-label">Sale Aging</label>
-											<div class="dropdown">
-												<select class="selectpicker" multiple aria-label="Default select example"
-													data-live-search="true">
-													<option value="one">One</option>
-													<option value="two">Two</option>
-													<option value="three">Three</option>
-													<option value="four">Four</option>
-												</select>
+											<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+												<div class="card-filter-contain">
+													<i class="fas fa-layer-group"></i>
+													<label for="sel1" class="form-label">Mode of Sale</label>
+													<div class="dropdown">
+														<select class="selectpicker" multiple aria-label="Default select example"
+															data-live-search="true">
+															<option value="one">One</option>
+															<option value="two">Two</option>
+															<option value="three">Three</option>
+															<option value="four">Four</option>
+														</select>
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
 
-									<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-										<div class="card-filter-contain">
-											<i class="fas fa-people-carry"></i>
-											<label for="sel1" class="form-label">Purchase Party</label>
-											{/* <Select
+											<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+												<div class="card-filter-contain">
+													<i class="fas fa-stream"></i>
+													<label for="sel1" class="form-label">Team & Mode of Sale</label>
+													<div class="dropdown">
+														<select class="selectpicker" multiple aria-label="Default select example"
+															data-live-search="true">
+															<option value="one">One</option>
+															<option value="two">Two</option>
+															<option value="three">Three</option>
+															<option value="four">Four</option>
+														</select>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+												<div class="card-filter-contain">
+													<i class="fas fa-chart-line"></i>
+													<label for="sel1" class="form-label">Sale Aging</label>
+													<div class="dropdown">
+														<select class="selectpicker" multiple aria-label="Default select example"
+															data-live-search="true">
+															<option value="one">One</option>
+															<option value="two">Two</option>
+															<option value="three">Three</option>
+															<option value="four">Four</option>
+														</select>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+												<div class="card-filter-contain">
+													<i class="fas fa-people-carry"></i>
+													<label for="sel1" class="form-label">Purchase Party</label>
+													{/* <Select
 												// defaultValue={[colourOptions[2], colourOptions[3]]}
 												isMulti
 												name="purchasePartySelect"
@@ -1046,14 +1184,15 @@ export default function Header() {
 												components={animatedComponents}
 												closeMenuOnSelect={false}
 											/> */}
-										</div>
-									</div>
+													<input value={FilterData['strPurchaseParty']} onClick={handlePurchaseCommanModal} />
+												</div>
+											</div>
 
-									<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-										<div class="card-filter-contain">
-											<i class="fas fa-handshake"></i>
-											<label for="sel1" class="form-label">Sales Party</label>
-											<Select
+											<div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+												<div class="card-filter-contain">
+													<i class="fas fa-handshake"></i>
+													<label for="sel1" class="form-label">Sales Party</label>
+													{/* <Select
 												// defaultValue={[colourOptions[2], colourOptions[3]]}
 												isMulti
 												name="salesPartySelect"
@@ -1066,13 +1205,14 @@ export default function Header() {
 
 												components={animatedComponents}
 												closeMenuOnSelect={false}
-												/>
-										</div>
-									</div>
+											/> */}
+													<input value={FilterData['strSalesParty']} onClick={handleSalesCommanModal} />
+												</div>
+											</div>
 
 
 
-									{/* <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+											{/* <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
 									<div class="card-filter-contain">
 										<i class="fas fa-calendar-week"></i>
 										<label for="sel1" class="form-label">Month</label>
@@ -1105,28 +1245,29 @@ export default function Header() {
 								</div> */}
 
 
+										</div>
+									</form>
 								</div>
-							</form>
+
+							</Modal.Body>
+
+							<Modal.Footer class="modal-footer">
+
+								<button type="button" class="filter-footer-button" data-mdb-ripple-init onClick={handleOnClose}> Close </button>
+								<button type="button" class="filter-footer-button" data-mdb-ripple-init onClick={handleApplyFilter}>Apply</button>
+								<div class="form-check checkbox-filter">
+									<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked />
+									<label class="form-check-label checkbox-filter-label text-muted" for="flexCheckChecked">(% Set
+										as Default)</label>
+								</div>
+
+							</Modal.Footer>
+
 						</div>
-
-					</Modal.Body>
-
-					<Modal.Footer class="modal-footer">
-
-						<button type="button" class="filter-footer-button" data-mdb-ripple-init onClick={handleOnClose}> Close </button>
-						<button type="button" class="filter-footer-button" data-mdb-ripple-init onClick={handleApplyFilter}>Apply</button>
-						<div class="form-check checkbox-filter">
-							<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked />
-							<label class="form-check-label checkbox-filter-label text-muted" for="flexCheckChecked">(% Set
-								as Default)</label>
-						</div>
-
-					</Modal.Footer>
-
-				</div>
-				{/* </div> */}
-				{/* </div> */}
-			</Modal>
+						{/* </div> */}
+						{/* </div> */}
+					</Modal>
+			}
 
 		</>
 	)

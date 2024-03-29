@@ -10,80 +10,145 @@ import contex from '../../contex/Contex';
 
 export default function ModeofSalesWise() {
 
-  const contexData = useContext(contex)
+  // const contexData = useContext(contex)
 
-  const series = [44, 55, 41, 17, 15]
+  // const series = [44, 55, 41, 17, 15]
 
-  const label = ["Comedy", "Action", "SciFi", "Drama", "Horror"]
+  // const label = ["Comedy", "Action", "SciFi", "Drama", "Horror"]
 
-  const option = semiDoughnutOptions(label)
+  // const option = semiDoughnutOptions(label)
 
-  const [postData, setPostData] = useState({
-    "strBranch": "",
-    "strState": "",
-    "strCity": "",
-    "strItem": "",
-    "strSubItem": "",
-    "strItemGroup": "",
-    "strItemSubitem": "",
-    "strPurchaseParty": "",
-    "strSalesParty": "",
-    "strSaleman": "",
-    "strProduct": "",
-    "strDesignCatalogue": "",
-    "strSaleAging": "",
-    "strModeofSale": "",
-    "strTeamModeofSale": "",
-    "FromDate": "",
-    "ToDate": "",
-    "strMetalType": "",
-    "strDayBook": "",
-    "PageNo": 0,
-    "PageSize": 0,
-    "Search": ""
-  })
-
-
-  useEffect(() => {
-
-    setPostData(contexData.state)
-
-  }, [contexData.state])
-
-  useEffect(() => {
-    getdata()
-  }, [postData])
+  // const [postData, setPostData] = useState({
+  //   "strBranch": "",
+  //   "strState": "",
+  //   "strCity": "",
+  //   "strItem": "",
+  //   "strSubItem": "",
+  //   "strItemGroup": "",
+  //   "strItemSubitem": "",
+  //   "strPurchaseParty": "",
+  //   "strSalesParty": "",
+  //   "strSaleman": "",
+  //   "strProduct": "",
+  //   "strDesignCatalogue": "",
+  //   "strSaleAging": "",
+  //   "strModeofSale": "",
+  //   "strTeamModeofSale": "",
+  //   "FromDate": "",
+  //   "ToDate": "",
+  //   "strMetalType": "",
+  //   "strDayBook": "",
+  //   "PageNo": 0,
+  //   "PageSize": 0,
+  //   "Search": ""
+  // })
 
 
-  function getdata() {
+  // useEffect(() => {
 
-    let temp1 = []
+  //   setPostData(contexData.state)
+
+  // }, [contexData.state])
+
+  // useEffect(() => {
+  //   getdata()
+  // }, [postData])
 
 
-    post(postData, API.GetModeOfSalesWise, 'post')
-      .then((res) => {
+  // function getdata() {
 
-        for (let index = 0; index < res.data.lstResult.length; index++) {
+  //   let temp1 = []
 
-          temp1.push({
 
-          })
+  //   post(postData, API.GetModeOfSalesWise, 'post')
+  //     .then((res) => {
 
-        }
+  //       for (let index = 0; index < res.data.lstResult.length; index++) {
 
-      })
-  }
+  //         temp1.push({
 
-  function handledropdownMenu() {
-    document.getElementById("myDropdownModeofsales").style.display === "block" ? document.getElementById("myDropdownModeofsales").style.display = "none" : document.getElementById("myDropdownModeofsales").style.display = "block";
-  }
+  //         })
 
-  function handleSelectedChart(num) {
-    // setBranchWiseChart(num)
-  }
+  //       }
 
+  //     })
+  // }
+
+  // function handledropdownMenu() {
+  //   document.getElementById("myDropdownModeofsales").style.display === "block" ? document.getElementById("myDropdownModeofsales").style.display = "none" : document.getElementById("myDropdownModeofsales").style.display = "block";
+  // }
+
+  // function handleSelectedChart(num) {
+  //   // setBranchWiseChart(num)
+  // }
+	const contexData = useContext(contex);
+	const [name, setName] = useState([])
+	const [weight, setweight] = useState([])
+	let inputdata = contexData.state;
+
+	useEffect(() => {
+		getdata()
+	}, [inputdata])
+
+	function getdata() {
+
+		inputdata = { ...inputdata, ['Grouping']: 'a.ChallanGenerateTypeID,N.ChallanGenerateType' }
+		console.log("branchwise data", inputdata);
+		post(inputdata, API.CommonChart, {}, 'post')
+			.then((res) => {
+				let name = [];
+				let weight = [];
+				console.log(res.data.lstResult)
+				for (let index = 0; index < res.data.lstResult.length; index++) {
+					if (res.data.lstResult[index]['ChallanGenerateType'] === null) {
+						name.push("null")
+					} else {
+						name.push(res.data.lstResult[index]['ChallanGenerateType'])
+					}
+					weight.push(res.data.lstResult[index]['FineWt'])
+				}
+				setName(name)
+				setweight(weight)
+
+				inputdata = { ...inputdata, ['Grouping']: '' }
+			})
+	}
+	const series = weight
+  const options = {
+    chart: {
+      toolbar: {
+        show: true,
+        offsetX: 0,
+        offsetY: 0,
+        tools: {
+          download: true,
+        },
+
+      },
+      type: 'donut',
+    },
+    legend: {
+      position: 'bottom'
+    },
+    responsive: [{
+      breakpoint: 480,
+      options: {
+        chart: {
+          width: 200
+        },
+      }
+    }],
+    plotOptions: {
+      pie: {
+        startAngle: -90,
+        endAngle: 90,
+        offsetY: 10
+      }
+  },
+  labels : name
+}
   return (
-    <div className="col-lg-4 col-md-6 col-12">
+    <div className="col-lg-6 col-md-6 col-12">
       <div className="graph-card">
         <div href="#" target="_self" className="card-title-graph">
           <p><i className="fas fa-layer-group"></i>
@@ -98,7 +163,7 @@ export default function ModeofSalesWise() {
           </div> */}
         </div>
         <div className="crancy-progress-card card-contain-graph">
-          <ReactApexChart options={option} series={series} type="donut" height={390} />
+          <ReactApexChart options={options} series={series} type="donut" height={390} />
         </div>
       </div>
     </div>

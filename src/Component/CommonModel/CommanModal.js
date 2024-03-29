@@ -3,47 +3,64 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import InputGroup from 'react-bootstrap/InputGroup';
-import CreatContext from './Context/CreateContext';
 import axios from 'axios';
+import contex from '../contex/Contex';
+import Loader from '../Loader';
 
 
 function Commonmodel(props) {
     const ref = useRef([]);
-    const contextSetparam = useContext(CreatContext)
+    const contextSetparam = useContext(contex)
 
     const [finalitem, setfinalitem] = useState([]);
     const [finalAllitem, setfinalAllitem] = useState([]);
     const [scrollTop, setScrollTop] = useState(0);
     const [multicheck, setmulticheck] = useState([])
     const [page, setPage] = useState(2);
-    const [search, setSearch] = useState(contextSetparam.CommanChildFilter)
+    const [search, setSearch] = useState(contextSetparam.tempstate)
+    const [searchValue, setSearchValue] = useState("")
+    const [totalcount, setTotalCount] = useState(0)
 
     let updatedList = [...props.prdemo];
 
     useEffect(() => {
         setPage(2)
         setmulticheck(updatedList)
-        setSearch(contextSetparam.CommanChildFilter)
+        setSearch(contextSetparam.tempstate)
         fetchItemdata()
-        fetchAllData()
-    }, [contextSetparam.CommanChildFilter, props.modelprops])
+       
+    }, [contextSetparam.stat, props.modelprops])
 
 
 
     useEffect(() => {
+        console.log("useeffect search");
         fetchItemdata()
     }, [search])
 
+    useEffect(() => {
+        setSearch({ ...search, ['Search']: searchValue })
+    }, [searchValue])
+
+    useEffect(() => {
+        fetchAllData()
+    }, [totalcount])
+
     const fetchAllData = () => {
-        var input = { ...search, ['PageSize']: 13540 }
-        if (props.modelprops.api !== undefined) {
-            // console.log("search", search)
-            axios.post(props.modelprops.api, input)
-                .then((response) => {
-                    // console.log(response);
-                    setfinalAllitem(response.data.lstResult)
-                })
-                .catch(error => console.error(error))
+        if (totalcount !== 0) {
+
+
+            var input = { ...search, ['PageSize']: totalcount }
+            if (props.modelprops.api !== undefined) {
+                // console.log("search", input)
+                console.log("api", props.modelprops.api)
+                axios.post(props.modelprops.api, input)
+                    .then((response) => {
+                        // console.log(response);
+                        setfinalAllitem(response.data.lstResult)
+                    })
+                    .catch(error => console.error(error))
+            }
         }
     }
     const handleClose = () => {
@@ -71,7 +88,7 @@ function Commonmodel(props) {
     const handlesavefilter = () => {
         var stringConvert = multicheck.toString()
         // props.setvalues({ ...props.valuesform, [props.modelprops.labelname]: stringConvert })
-        contextSetparam.SetTempCommanFilter({ ...contextSetparam.TempCommanFilter, [props.modelprops['labelname']]: stringConvert })
+        contextSetparam.SettempState({ ...contextSetparam.tempstate, [props.modelprops['labelname']]: stringConvert })
         contextSetparam.setchildFilterShow(false)
         setmulticheck([])
     }
@@ -83,7 +100,7 @@ function Commonmodel(props) {
             }
         }
         setmulticheck([])
-        contextSetparam.SetTempCommanFilter({ ...contextSetparam.TempCommanFilter, [props.modelprops['labelname']]: "" })
+        contextSetparam.SettempState({ ...contextSetparam.tempstate, [props.modelprops['labelname']]: "" })
     }
 
 
@@ -98,7 +115,7 @@ function Commonmodel(props) {
         if (scrollRatio === 1) {
             setPage(page + 1);
 
-            axios.post(props.modelprops.api, { ...contextSetparam.CommanChildFilter, ["PageNo"]: page })
+            axios.post(props.modelprops.api, { ...contextSetparam.state, ["PageNo"]: page })
                 .then(response => {
                     setfinalitem([...finalitem, ...response.data.lstResult])
                 })
@@ -109,13 +126,16 @@ function Commonmodel(props) {
 
 
     const fetchItemdata = () => {
-        var input = { ...search, ['PageSize'] : 10 }
+        var input = { ...search, ['PageSize']: 10 }
         if (props.modelprops.api !== undefined) {
-            // console.log("search", search)
+            console.log("search", input)
+            // console.log("api", props.modelprops.api)
             axios.post(props.modelprops.api, input)
                 .then((response) => {
-                    // console.log(response);
+                    console.log(response.data.lstResult)
                     setfinalitem(response.data.lstResult)
+                    setTotalCount(response.data.lstResult[0]['TotalCount'])
+                    // console.log(response);
                 })
                 .catch(error => console.error(error))
         }
@@ -123,7 +143,8 @@ function Commonmodel(props) {
 
 
     const handleSearch = (event) => {
-        setSearch({ ...search, ["search"]: event.target.value })
+        console.log(event.target.value, "search");
+        setSearchValue(event.target.value)
     }
 
     const cancelbutton = (e) => {
@@ -145,7 +166,7 @@ function Commonmodel(props) {
                                 <Modal.Title>Design Filter</Modal.Title>
                             </Modal.Header>
 
-                            <Modal.Body className='modal-body' style={{ padding:0, paddingRight:30, paddingLeft:30}}> 
+                            <Modal.Body className='modal-body' style={{ padding: 0, paddingRight: 30, paddingLeft: 30 }}>
                                 <Form className='comman-modal-form'>
                                     <InputGroup >
                                         <InputGroup.Text id="basic-addon1">Search</InputGroup.Text>
@@ -171,9 +192,9 @@ function Commonmodel(props) {
                                             })}
                                         </div> : null}
 
-
+                                    {finalitem.length !== 0?
                                     <div id="scrollbar" className='style-2' onScroll={handleScroll}>
-
+                            
                                         {finalitem.map((ele, i) =>
                                         (
 
@@ -194,7 +215,7 @@ function Commonmodel(props) {
                                         )
                                         )
                                         }
-                                    </div>
+                                    </div>:<Loader/> }
                                 </Form>
                             </Modal.Body>
 

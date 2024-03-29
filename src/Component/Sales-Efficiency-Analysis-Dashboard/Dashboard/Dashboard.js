@@ -72,8 +72,8 @@ export default function Dashboard() {
                                 <MonthWise/>
                                 <YearWise/>
                                 <SalesAgingWise/>
-                                <ModeofSalesWise/>
-                                <TeamModeofSalesWise/>
+                                <ModeofSalesWise/> 
+                                {/* <TeamModeofSalesWise/> */}
                             </div>
                         </div>
                     </div>

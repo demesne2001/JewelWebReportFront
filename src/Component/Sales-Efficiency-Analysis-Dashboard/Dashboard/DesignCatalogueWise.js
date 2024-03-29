@@ -10,77 +10,187 @@ import contex from '../../contex/Contex';
 
 export default function DesignCatalogueWise() {
 
-  const contexData = useContext(contex)
+  // const contexData = useContext(contex)
 
-  const series = [44, 55, 41, 17, 15]
+  // const series = [44, 55, 41, 17, 15]
 
-  const label = ["Comedy", "Action", "SciFi", "Drama", "Horror"]
+  // const label = ["Comedy", "Action", "SciFi", "Drama", "Horror"]
 
-  const pieOptions = patternedPieOptions(label)
+  // const pieOptions = patternedPieOptions(label)
 
-  const [postData, setPostData] = useState({
-    "strBranch": "",
-    "strState": "",
-    "strCity": "",
-    "strItem": "",
-    "strSubItem": "",
-    "strItemGroup": "",
-    "strItemSubitem": "",
-    "strPurchaseParty": "",
-    "strSalesParty": "",
-    "strSaleman": "",
-    "strProduct": "",
-    "strDesignCatalogue": "",
-    "strSaleAging": "",
-    "strModeofSale": "",
-    "strTeamModeofSale": "",
-    "FromDate": "",
-    "ToDate": "",
-    "strMetalType": "",
-    "strDayBook": "",
-    "PageNo": 0,
-    "PageSize": 0,
-    "Search": ""
-  })
+  // const [postData, setPostData] = useState({
+  //   "strBranch": "",
+  //   "strState": "",
+  //   "strCity": "",
+  //   "strItem": "",
+  //   "strSubItem": "",
+  //   "strItemGroup": "",
+  //   "strItemSubitem": "",
+  //   "strPurchaseParty": "",
+  //   "strSalesParty": "",
+  //   "strSaleman": "",
+  //   "strProduct": "",
+  //   "strDesignCatalogue": "",
+  //   "strSaleAging": "",
+  //   "strModeofSale": "",
+  //   "strTeamModeofSale": "",
+  //   "FromDate": "",
+  //   "ToDate": "",
+  //   "strMetalType": "",
+  //   "strDayBook": "",
+  //   "PageNo": 0,
+  //   "PageSize": 0,
+  //   "Search": ""
+  // })
 
 
-  useEffect(()=>{
+  // useEffect(()=>{
 
-		setPostData(contexData.state)
+	// 	setPostData(contexData.state)
 
-	},[contexData.state])
+	// },[contexData.state])
 
-	useEffect(()=>{
+	// useEffect(()=>{
+	// 	getdata()
+	// },[postData])
+
+
+  // function getdata() {
+
+  //   let temp1 = []
+
+  //   post(postData, API.GetDesignCatalogueWise, 'post')
+  //     .then((res) => {
+
+  //       for (let index = 0; index < res.data.lstResult.length; index++) {
+
+  //         temp1.push({
+
+  //         })
+
+  //       }
+
+  //     })
+  // }
+
+  // function handledropdownMenu() {
+  //   document.getElementById("myDropdownDesign").style.display === "block" ? document.getElementById("myDropdownDesign").style.display = "none" : document.getElementById("myDropdownDesign").style.display = "block";
+  // }
+
+
+  // function handleSelectedChart(num) {
+  //   // setBranchWiseChart(num)
+  // }
+
+  const contexData = useContext(contex);
+	const [name, setName] = useState([])
+	const [weight, setweight] = useState([])
+	let inputdata = contexData.state;
+
+  useEffect(() => {
 		getdata()
-	},[postData])
+	}, [inputdata])
 
+	function getdata() {
 
-  function getdata() {
+        inputdata = { ...inputdata, ['Grouping']: 'j.designCatalogID,j.DesignNo' }
+		console.log("branchwise data", inputdata);
+		post(inputdata, API.CommonChart, {}, 'post')
+			.then((res) => {
+				let name = [];
+				let weight = [];
+				console.log(res.data.lstResult)
+				for (let index = 0; index < res.data.lstResult.length; index++) {
+					if (res.data.lstResult[index]['DesignNo'] === null) {
+						name.push("null")
+					} else {
+            name.push(res.data.lstResult[index]['DesignNo'])
+					}
+					weight.push(res.data.lstResult[index]['FineWt'])
+				}
+				setName(name)
+				setweight(weight)
+				inputdata = { ...inputdata, ['Grouping']: '' }
+			})
+    }
 
-    let temp1 = []
-
-    post(postData, API.GetDesignCatalogueWise, 'post')
-      .then((res) => {
-
-        for (let index = 0; index < res.data.lstResult.length; index++) {
-
-          temp1.push({
-
-          })
-
+    const series = weight;
+    const options= {
+      legend:{
+        position: 'bottom'
+      },
+      chart: {
+        toolbar: {
+          show: true,
+          offsetX: 0,
+          offsetY: 0,
+          tools: {
+            download: true,
+          },
+  
+        },
+        width: 380,
+        type: 'donut',
+        dropShadow: {
+          enabled: true,
+          color: '#111',
+          top: -1,
+          left: 3,
+          blur: 3,
+          opacity: 0.2
         }
-
-      })
-  }
-
-  function handledropdownMenu() {
-    document.getElementById("myDropdownDesign").style.display === "block" ? document.getElementById("myDropdownDesign").style.display = "none" : document.getElementById("myDropdownDesign").style.display = "block";
-  }
-
-
-  function handleSelectedChart(num) {
-    // setBranchWiseChart(num)
-  }
+      },
+      stroke: {
+        width: 0,
+      },
+      plotOptions: {
+        pie: {
+          donut: {
+            labels: {
+              show: true,
+              total: {
+                showAlways: true,
+                show: true
+              }
+            }
+          }
+        }
+      },
+      labels: name,
+      dataLabels: {
+        dropShadow: {
+          blur: 3,
+          opacity: 0.8
+        }
+      },
+      fill: {
+      type: 'pattern',
+        opacity: 1,
+        pattern: {
+          enabled: true,
+          style: ['verticalLines', 'squares', 'horizontalLines', 'circles','slantedLines'],
+        },
+      },
+      states: {
+        hover: {
+          filter: 'none'
+        }
+      },
+      theme: {
+        palette: 'palette2'
+      },
+      // responsive: [{
+      //   breakpoint: 480,
+      //   options: {
+      //     chart: {
+      //       width: 200
+      //     },
+      //     legend: {
+      //       position: 'bottom'
+      //     }
+      //   }
+      // }]
+    }
 
   return (
     <div className="col-lg-4 col-md-6 col-12">
@@ -98,7 +208,7 @@ export default function DesignCatalogueWise() {
           </div> */}
         </div>
         <div className="crancy-progress-card card-contain-graph">
-          <ReactApexChart options={pieOptions} series={series} type="donut" />
+          <ReactApexChart options={options} series={series} type="donut" />
         </div>
       </div>
     </div>

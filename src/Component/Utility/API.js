@@ -20,6 +20,7 @@ const API = {
     GetDesignCatalogue: Filter+'GetDesignCatalogue',
     GetSaleman:Filter+'GetSaleman',
     GetSalesParty : Filter+'GetSalesParty',
+    GetPurchaseParty : Filter+'GetPurchaseParty',
 
     GetSalesEfficiencyCard : Card + 'GetSalesEfficiencyCard',
     GetReturnTrendCard : Card + 'GetReturnTrendCard',
@@ -44,7 +45,9 @@ const API = {
     GetSalesAgingWise : Chart + 'GetSalesAgingWise',
     GetModeOfSalesWise : Chart + 'GetModeOfSalesWise',
     GetTeamAndModeOFSalesWise : Chart + 'GetTeamAndModeOFSalesWise',
-    GetSalesmanWise : Chart + 'GetSalesmanWise'
+    GetSalesmanWise : Chart + 'GetSalesmanWise',
+    CommonChart : Chart + 'GetCommanChart',
+    CommonCard : Card + 'GetCardValue',
 
 
 }
