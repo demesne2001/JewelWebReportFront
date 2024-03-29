@@ -147,6 +147,7 @@ export default function ItemWise() {
 					colors: ['#fff', '#f2f2f2']
 				}
 			},
+			
 			xaxis: {
 				labels: {
 					show: true,
