@@ -10,8 +10,6 @@ pipeline {
                 echo 'checkout done'
             }
         }
-        
-
         stage('Docker Image') {
             steps {
                 
