@@ -1,0 +1,10 @@
+From node:18.12.1
+RUN mkdir '/WebReportJsoft'
+WORKDIR '/WebReportJsoft'
+
+COPY . /WebReportJsoft
+COPY package.json .
+RUN npm install
+COPY . .
+EXPOSE 4000
+CMD [ "npm","start" ]
