@@ -142,7 +142,7 @@ export default function PurchasePartyWise() {
 
       })
     }
-    // setImageArr(temp)
+    // setImageArr(temp) infin
   }
 
 
