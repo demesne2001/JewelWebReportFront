@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-               checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'demesne2001', url: 'https://github.com/demesne2001/JewelWebReportFront.git']])
+               checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'demesne2001', url: 'https://github.com/demesne2001/JSoftWeb.git']])
                 echo 'checkout done'
             }
         }
@@ -29,7 +29,7 @@ pipeline {
         stage('Docker Run') {
             steps {
                 script{
-                    bat 'docker run -p 4000:4000 -d --name jsoftfront jsoftfront'
+                    bat 'docker run -p 3035:3035 -d --name jsoftfront jsoftfront'
                 }
                 echo 'Docker Running'
             }
